@@ -10,7 +10,7 @@ namespace Es_13_03
     {
         int _numeroCaschiBlu;
 
-        public ONU(string Nome, string Sede, string Presidente, string Regole, int NumeroDipendenti, int NumeroCaschiBlu) : base(Nome, Sede, Presidente, Regole, NumeroDipendenti)
+        public ONU(string Nome, string Sede, string Presidente, int NumeroDipendenti, int NumeroCaschiBlu) : base(Nome, Sede, Presidente, NumeroDipendenti)
         {
             this.NumeroCaschiBlu = NumeroCaschiBlu;
         }

@@ -13,13 +13,13 @@ namespace Es_13_03
         string _presidente;
         string _regole;
         int _numeroDipendenti;
+        Paese _paese;
 
-        public Organizzazione(string Nome, string Sede, string Presidente, string Regole, int NumeroDipendenti)
+        public Organizzazione(string Nome, string Sede, string Presidente, int NumeroDipendenti)
         {
             this.Nome = Nome;
             this.Sede = Sede;
             this.Presidente = Presidente;
-            this.Regole = Regole;
             this.NumeroDipendenti = NumeroDipendenti;
         }
 
@@ -28,6 +28,12 @@ namespace Es_13_03
         public string Presidente { get => _presidente; set => _presidente = value; }
         public string Regole { get => _regole; set => _regole = value; }
         public int NumeroDipendenti { get => _numeroDipendenti; set => _numeroDipendenti = value; }
+        internal Paese Paese { get => _paese; set => _paese = value; }
+
+        public void AggiungiStato(Paese paese)
+        {
+            Paese = paese;
+        }
 
     }
 }

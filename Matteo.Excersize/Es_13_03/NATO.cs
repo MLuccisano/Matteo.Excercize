@@ -9,7 +9,7 @@ namespace Es_13_03
     internal class NATO : Organizzazione
     {
         int _paesiAderenti;
-        public NATO(string Nome, string Sede, string Presidente, string Regole, int NumeroDipendenti, int PaesiAderenti) : base(Nome, Sede, Presidente, Regole, NumeroDipendenti)
+        public NATO(string Nome, string Sede, string Presidente, int NumeroDipendenti, int PaesiAderenti) : base(Nome, Sede, Presidente, NumeroDipendenti)
         {
             this.PaesiAderenti = PaesiAderenti;
         }

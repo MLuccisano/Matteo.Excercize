@@ -24,7 +24,6 @@ namespace Es_13_03
         public string Emisfero { get => emisfero; set => emisfero = value; }
         internal Paese Paese { get => _paese; set => _paese = value; }
 
-
     }
 }
    
