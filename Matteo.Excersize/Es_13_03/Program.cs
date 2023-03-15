@@ -7,8 +7,10 @@ namespace Es_13_03
         static void Main(string[] args)
         {
             
-            Continente europa = new Continente("Italia");
-            Paese italia = europa.Paese;
+            Continente europa = new Continente("Europa", "Boreale");
+            Paese italia = new Paese("Italia", europa);
+            europa.AggiungiStato(italia); 
+            
 
             Regione regione = new Regione("Piemonte", italia);
             Provincia provincia = new Provincia("Torino", regione);

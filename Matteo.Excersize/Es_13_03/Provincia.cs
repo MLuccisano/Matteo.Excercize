@@ -8,25 +8,28 @@ namespace Es_13_03
 {
     class Provincia //: AreaGeografica
     {
-        string _assessoreProvinciale;
+        /*string _assessoreProvinciale;
         int _numeroComune;
-        Regione _regione;
-        Comune _comune;
+        Regione _regione;*/
+        Comune comune;
         string _nome;
 
-
-        public Provincia(string Nome, Regione regione)//, string Coordinate, int NumeroAbitanti, string AssessoreProvinciale, int NumeroComune) : base(Nome, Coordinate, NumeroAbitanti)
+        public Provincia(string Nome)//, string Coordinate, int NumeroAbitanti, string AssessoreProvinciale, int NumeroComune) : base(Nome, Coordinate, NumeroAbitanti)
         {
-            // this.AssessoreProvinciale = AssessoreProvinciale;
-            //this.NumeroComune = NumeroComune;
-
-            _nome = Nome;
-            this._regione = regione;
-            regione.AddProvincia(this);
+            /* this.AssessoreProvinciale = AssessoreProvinciale;
+             this.NumeroComune = NumeroComune;
+             _nome = Nome;
+             this._regione = regione;
+             regione.AddProvincia(this);*/
+            comune = new Comune(Nome);
 
         }
 
-        public void addComune(Comune comune)
+        public void changeComune(string Nome)
+        {
+            comune = new Comune(Nome);
+        }
+       /* public void addComune(Comune comune)
         {
             _comune = comune;
         }
@@ -35,7 +38,29 @@ namespace Es_13_03
         {
             _comune = comune;
         }
-        /*public string AssessoreProvinciale { get => _assessoreProvinciale; set => _assessoreProvinciale = value; }
+        public string AssessoreProvinciale { get => _assessoreProvinciale; set => _assessoreProvinciale = value; }
         public int NumeroComune { get => _numeroComune; set => _numeroComune = value; }*/
+    }
+
+    class Comune
+    {
+        string _nome;
+        Provincia _provincia;
+
+        public Comune(string Nome)
+        {
+            _nome = Nome;   
+                       
+        }
+
+       /* public void removeComune(string Nome)
+        {
+            _nome = null;
+        }*/
+        public void changeProvincia(Provincia provincia)
+        {
+            _provincia = provincia;
+        }
+
     }
 }

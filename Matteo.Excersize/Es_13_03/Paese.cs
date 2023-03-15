@@ -15,16 +15,17 @@ namespace Es_13_03
         int _numeroProvincia;
         int _numeroComune;
         Regione _regione;
+        Continente _continente;
 
-        public Paese(string Nome)//, string Coordinate, int NumeroAbitanti, string FormaGoverno, string CapoStato, string Capitale, int NumeroRegioni, int NumeroProvincia, int NumeroComune) : base(Nome, Coordinate, NumeroAbitanti)
+        public Paese(string Nome, Continente continente)//, string Coordinate, int NumeroAbitanti, string FormaGoverno, string CapoStato, string Capitale, int NumeroRegioni, int NumeroProvincia, int NumeroComune) : base(Nome, Coordinate, NumeroAbitanti)
         {
-           /* this.FormaGoverno = FormaGoverno;
-            this.CapoStato = CapoStato;
-            this.Capitale = Capitale;
-            this.NumeroRegioni = NumeroRegioni;
-            this.NumeroProvincia = NumeroProvincia;
-            this.NumeroComune = NumeroComune;*/
-;
+            /* this.FormaGoverno = FormaGoverno;
+             this.CapoStato = CapoStato;
+             this.Capitale = Capitale;
+             this.NumeroRegioni = NumeroRegioni;
+             this.NumeroProvincia = NumeroProvincia;
+             this.NumeroComune = NumeroComune;*/
+            _continente = continente;
 
         }
         public string FormaGoverno { get => _formaGoverno; set => _formaGoverno = value; }

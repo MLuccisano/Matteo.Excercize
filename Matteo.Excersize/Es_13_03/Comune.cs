@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Es_13_03
 {
-    class Comune //: AreaGeografica
+    /*class Comune //: AreaGeografica
     {
         //string _municipio;
         //int _CAP;
@@ -34,5 +34,5 @@ namespace Es_13_03
         //public int CAP { get => _CAP; set => _CAP = value; }
         //public string Municipio { get => _municipio; set => _municipio = value; }
 
-    }
+    }*/
 }
