@@ -12,12 +12,13 @@ namespace The_World
             Continente.Paese italia = new Continente.Paese("Italia");
             italia.creaRegione("Piemonte");
 
-            Continente.Regione piemonte = new Continente.Regione("Piemonte");
+            Continente.Paese.Regione piemonte = new Continente.Paese.Regione("Piemonte");
             piemonte.creaProvincia("Torino");
 
-            Continente.Provincia torino = new Continente.Provincia("Torino");
+            Continente.Paese.Regione.Provincia torino = new Continente.Paese.Regione.Provincia("Torino");
             torino.creaComune("Nichelino");
-                
+
+
         }
     } 
 }
