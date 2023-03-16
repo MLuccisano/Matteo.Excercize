@@ -15,70 +15,142 @@ namespace The_World
             _nomeContinente = NomeContinente;
         }
 
-        private void AddPaese(Paese paese)
+
+        private void addPaese(Paese paese)
         {
             _paese = paese;
         }
-
-        public void CreaPaese(string paese)
+        public void creaPaese(string paeseDest)
         {
-            _paese = new Paese(paese);
+            _paese = new Paese(paeseDest);
         }
 
-        public void changeContinente(Continente continente)
+        public void changePaese(string nomeContinenteDest)
         {
-            continente.AddPaese(_paese);
-            _paese = null;
+            Continente continene = new Continente(nomeContinenteDest);
+            continene.addPaese(_paese);
+            
         }
-        internal class Paese
+
+        public void creaRegione(string nomeRegioneDest)
+        {
+            _paese.creaRegione(nomeRegioneDest);
+        }
+        public void changeRegione(string nomeRegioneDest)
+        {
+            _paese.changeRegione(nomeRegioneDest);
+        }
+
+        public void creaProvincia(string nomeRegione, string nomeProvinciaDest)
+        {
+            _paese.CreaProvincia(nomeRegione, nomeProvinciaDest);
+        }
+
+        public void changeProvincia(string nomeRegione, string nomeProvinciaDest)
+        {
+            _paese.changeProvincia(nomeRegione, nomeProvinciaDest);
+        }
+
+        public void creaComune(string nomeregione, string nomeProvincia,string nomeComuneDest)
+        {
+            _paese.creaComune(nomeregione, nomeProvincia,nomeComuneDest);
+        }
+
+        public void changeComune(string nomeComuneDest, string nomeProvinciaDest)
+        {
+            _paese.changeComune(nomeComuneDest, nomeProvinciaDest);
+        }
+        /*public void ChangeComune (string nomeRegioneDest, string nomeProvinciaDest, string nomeComuneDest)
+    {
+         Paese paese = new Paese(paeseDest);        
+        paese.ChangeComune(nomeRegioneDest, nomeProvinciaDest, nomeComuneDest, frase);           
+    }*/
+
+        class Paese
         {
             Regione _regione;
             string _nomePaese;
-
+            
             public Paese(string NomePaese)
             {
                 _nomePaese = NomePaese;
             }
+
             private void addRegione(Regione regione)
             {
                 _regione = regione;
             }
-
-            public void creaRegione(string regione)
+            public void creaRegione(string nomeRegione)
             {
-                _regione = new Regione(regione);
+                _regione = new Regione(nomeRegione);
             }
 
-            public void changePaese(Paese paese)
+            public void changeRegione(string nomePaese)
             {
+                Paese paese = new Paese(nomePaese);
                 paese.addRegione(_regione);
-                _regione = null;
+                
             }
-            internal class Regione
+
+            public void CreaProvincia(string nomeRegione, string nomeProvincia)
+            {
+                _regione = new Regione(nomeRegione);        
+                _regione.creaProvincia(nomeProvincia);
+            }
+
+            public void changeProvincia(string nomeRegione,string nomeProvincia)
+            {
+                Regione regione = new Regione(nomeRegione);
+                regione.ChangeProvincia(nomeProvincia);
+            }
+
+            public void creaComune(string nomeRegione, string nomeProvincia, string nomeComune)
+            {
+                Regione regione = new Regione(nomeRegione);
+                regione.creaComune(nomeProvincia, nomeComune);
+            }
+            public void changeComune(string nomeProvincia, string nomeComune)
+            {
+                _regione.changeComune(nomeProvincia,nomeComune);
+            }
+            
+            class Regione
             {
                 Provincia _provincia;
                 string _nomeRegione;
-
+                
                 public Regione(string NomeRegione)
                 {
                     _nomeRegione = NomeRegione;
                 }
+
                 private void addProvincia(Provincia provincia)
                 {
                     _provincia = provincia;
                 }
-
-                public void creaProvincia(string provincia)
+                public void creaProvincia(string nomeProvincia)
                 {
-                    _provincia = new Provincia(provincia);
+                    _provincia = new Provincia(nomeProvincia);    
+                }
+                public void ChangeProvincia(string nomeRegione)
+                {
+                    Regione regione = new Regione(nomeRegione);
+                    regione.addProvincia(_provincia);                   
                 }
 
-                public void changeRegione(Regione regione)
+                public void creaComune(string nomeProvincia, string nomeComune)
                 {
-                    regione.addProvincia(_provincia);
-                    _provincia = null;
+                    _provincia = new Provincia(nomeProvincia);
+                    _provincia.creaComune(nomeComune);
                 }
-                internal class Provincia
+
+                public void changeComune(string nomeProvincia, string nomeComune)
+                {
+                    _provincia = new Provincia(nomeProvincia);
+                    _provincia.ChangeComune(nomeComune);
+                }
+
+                class Provincia
                 {
                     Comune _comune;
                     string _nomeProvincia;
@@ -87,22 +159,21 @@ namespace The_World
                     {
                         _nomeProvincia = NomeProvincia;
                     }
-
                     private void AddComune(Comune comune)
                     {
                         _comune = comune;
                     }
-                    public void creaComune(string comune)
+                    public void creaComune(string nomeComuneDest)
                     {
-                        _comune = new Comune(comune);
+                        _comune = new Comune(nomeComuneDest);
                     }
 
-                    public void changeProvincia(Provincia provincia)
+                    public void ChangeComune(string nomeComune)
                     {
-                        provincia.AddComune(_comune);
-                        _comune = null;
+                        this.AddComune(this._comune);
                     }
-                    internal class Comune
+                }
+                    class Comune
                     {
                         string _nomeComune;
                         public Comune(string NomeComune)
@@ -114,7 +185,7 @@ namespace The_World
             }
         }
     }
-}
+
 
 
 
