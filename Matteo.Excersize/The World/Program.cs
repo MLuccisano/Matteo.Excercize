@@ -15,21 +15,12 @@ namespace The_World
              Continente.Paese italia = new Continente.Paese("Italia");
              italia.creaRegione("Piemonte");
 
-             Continente.Paese germania = new Continente.Paese("Germania");
-             italia.changePaese(germania);
+            Continente.Regione piemonte = new Continente.Regione("Piemonte");
+            piemonte.creaProvincia("Torino");
 
-             Continente.Paese.Regione piemonte = new Continente.Paese.Regione("Piemonte");
-             piemonte.creaProvincia("Torino");
-
-             Continente.Paese.Regione lombardia = new Continente.Paese.Regione("Lombardia");
-             piemonte.changeRegione(lombardia);
-
-             Continente.Paese.Regione.Provincia torino = new Continente.Paese.Regione.Provincia("Torino");
-             torino.creaComune("Nichelino");
-
-             Continente.Paese.Regione.Provincia asti = new Continente.Paese.Regione.Provincia("Asti");
-             torino.changeProvincia(asti);
-            
+            Continente.Provincia torino = new Continente.Provincia("Torino");
+            torino.creaComune("Nichelino");
+                
         }
     } 
 }
