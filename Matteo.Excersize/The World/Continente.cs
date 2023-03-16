@@ -14,11 +14,7 @@ namespace The_World
         {
             _nomeContinente = NomeContinente;
         }
-        /*public Paese Paese()
-        {
-            return _paese;
-        }*/
-        public Paese paese { get { return _paese; } set { _paese = value; } }
+
         private void AddPaese(Paese paese)
         {
             _paese = paese;
@@ -38,13 +34,10 @@ namespace The_World
         {
             Regione _regione;
             string _nomePaese;
+
             public Paese(string NomePaese)
             {
                 _nomePaese = NomePaese;
-            }
-            public Regione Regione()
-            {
-                return _regione;
             }
             private void addRegione(Regione regione)
             {
