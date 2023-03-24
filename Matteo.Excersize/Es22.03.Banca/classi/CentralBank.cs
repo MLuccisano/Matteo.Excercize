@@ -26,9 +26,9 @@ namespace Es22._03.Banca
         public void transferMoney(Bank bankSender, Bank bankDestination)
         {
             if (bankSender is InoSwiftSystem && bankDestination is InoSwiftSystem)
-            {
-                    Console.WriteLine("You can transfer the money");                             
-            }
+                {
+                    Console.WriteLine("You can transfer the money");
+                }
 
             else Console.WriteLine("you cannot transfer the money");
             
