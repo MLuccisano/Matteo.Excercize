@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The World", "The World\The 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bonus Cittadino", "Bonus Cittadino\Bonus Cittadino.csproj", "{813130D1-B8FC-459D-9DEB-C819035D5623}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstraction", "Abstraction\Abstraction.csproj", "{859759E0-FF22-4BE0-826E-6E3F4FDDCA2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstraction", "Abstraction\Abstraction.csproj", "{859759E0-FF22-4BE0-826E-6E3F4FDDCA2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Esercizio_Int", "Esercizio_Int\Esercizio_Int.csproj", "{46BA153D-3D8D-4130-B12B-ED1028CEF1CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esercizio_Int", "Esercizio_Int\Esercizio_Int.csproj", "{46BA153D-3D8D-4130-B12B-ED1028CEF1CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Es22.03.Banca", "Es22.03.Banca\Es22.03.Banca.csproj", "{426AAD65-6812-4A2D-95FC-E0E4882CD6ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{46BA153D-3D8D-4130-B12B-ED1028CEF1CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46BA153D-3D8D-4130-B12B-ED1028CEF1CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46BA153D-3D8D-4130-B12B-ED1028CEF1CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{426AAD65-6812-4A2D-95FC-E0E4882CD6ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{426AAD65-6812-4A2D-95FC-E0E4882CD6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{426AAD65-6812-4A2D-95FC-E0E4882CD6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{426AAD65-6812-4A2D-95FC-E0E4882CD6ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
