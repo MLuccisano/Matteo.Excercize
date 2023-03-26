@@ -6,37 +6,16 @@ using System.Threading.Tasks;
 
 namespace Es22._03.Banca
 {
-    internal class CentralBank : Bank, IFlowMoney, InoSwiftSystem
+    internal class CentralBank : Bank
     {
-        CommercialBankRussian _commercialBank;
-        public CentralBank(string Name, string RegisteredOffice) : base(Name, RegisteredOffice)
+        CommercialBank _commercialBank;
+        public CentralBank(string Name, string RegisteredOffice, string Country) : base(Name, RegisteredOffice, Country)
         { 
         }
-        private void addCommercialBank(CommercialBankRussian commercialBank)
+        public void createCommercialBank(string name, string registeredOffice, string Country)
         {
-            _commercialBank = commercialBank;
+            _commercialBank = new CommercialBank(name, registeredOffice, Country);
         }
-
-        public void createCommercialBankRussian(string name, string registeredOffice)
-        {
-            _commercialBank = new CommercialBankRussian(name, registeredOffice);
-        }
-        public CommercialBankRussian commercialBankRussian { get { return _commercialBank; } set { _commercialBank = value; } }
-
-        public void transferMoney(Bank bankSender, Bank bankDestination)
-        {
-            if (bankSender is InoSwiftSystem && bankDestination is InoSwiftSystem)
-                {
-                    Console.WriteLine("You can transfer the money");
-                }
-
-            else Console.WriteLine("you cannot transfer the money");
-            
-        }
-
-        public void notSwitftSystem()
-        {
-            throw new NotImplementedException();
-        }
+        public CommercialBank commercialBank { get { return _commercialBank; } set { _commercialBank = value; } }
     }
 }
