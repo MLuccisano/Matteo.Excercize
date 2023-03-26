@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Es22._03.Banca
 {
-    internal class BankAccount
+    internal class Account
     {
         Customer _customer;
         int _bankAccount;
-        public int Bankaccount { get => _bankAccount; set => _bankAccount = value; }
-        public BankAccount(string Name, string Surname, int BankAccount)
+        public int BankAccount { get => _bankAccount; set => _bankAccount = value; }
+        public Account(string Name, string Surname, int BankAccount)
         {
             _customer = new Customer(Name, Surname);
-            this.Bankaccount = Bankaccount;
+            this.BankAccount = BankAccount;
         }
-        public Customer customer { get { return _customer; } }
+        public string customer { get { return _customer.Name +" "+ _customer.Surname; } }
     }
     class Customer
     {

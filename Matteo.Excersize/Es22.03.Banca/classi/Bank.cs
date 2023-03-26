@@ -10,17 +10,14 @@ namespace Es22._03.Banca
     {
         string _name;
         string _registeredOffice;
-        string _country;
 
-        public string Country { get => _country; set => _country = value; }
         public string RegisteredOffice { get => _registeredOffice; set => _registeredOffice = value; }
         public string Name { get => _name; set => _name = value; }
 
-        public Bank(string Name, string RegisteredOffice, string Country)
+        public Bank(string Name, string RegisteredOffice)
         {
             this.Name = Name;
             this.RegisteredOffice = RegisteredOffice;
-            this.Country = Country;
         }
     }
 }
