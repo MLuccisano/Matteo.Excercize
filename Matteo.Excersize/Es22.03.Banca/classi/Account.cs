@@ -8,28 +8,32 @@ namespace Es22._03.Banca
 {
     internal class Account
     {
-        Customer _customer;
+        CommercialBank _commercialBank;
+        Customer _Customer;
         int _bankAccount;
         public int BankAccount { get => _bankAccount; set => _bankAccount = value; }
-        public Account(string Name, string Surname, int BankAccount)
+        public Customer Customer {get{ return _Customer; } }
+        public Account(string Name, string Surname, int BankAccount, CommercialBank CommercialBank)
         {
-            _customer = new Customer(Name, Surname);
+            _commercialBank = CommercialBank;
+            _Customer = new Customer(Name, Surname, this);
             this.BankAccount = BankAccount;
         }
-        public string customer { get { return _customer.Name +" "+ _customer.Surname; } }
     }
     class Customer
     {
+        Account _account;
         string _name;
         string _surname;
 
         public string Surname { get => _surname; set => _surname = value; }
         public string Name { get => _name; set => _name = value; }
 
-        public Customer(string Name, string Surname)
+        public Customer(string Name, string Surname, Account account)
         {
             this.Name = Name;
             this.Surname = Surname;
+            _account = account;
 
         }
     }
