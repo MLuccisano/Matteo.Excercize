@@ -14,24 +14,23 @@ namespace Es22._03.Banca
         public int BankAccount { get => _bankAccount; }
 
         public Customer Customer {get{ return _Customer; } }
-        public Account(string Name, string Surname,CommercialBank CommercialBank)
+        public Account(string FullName, string CF, CommercialBank CommercialBank)
         {
             _commercialBank = CommercialBank;
-            _Customer = new Customer(Name, Surname, this);
+            _Customer = new Customer(FullName, CF, this);
             this._bankAccount = new Random().Next(100,100000);
             //_Customer.addBankAccount(this._bankAccount);
         }
+
     }
     class Customer
     {
         Account _account;
-        int[] _bankAccount;
-        string _name;
-        string _surname;
-        int cont;
-        
-        public string Surname { get => _surname; set => _surname = value; }
-        public string Name { get => _name; set => _name = value; }
+        string _fullname;
+        string _cf;
+        public string Fullname { get => _fullname; set => _fullname = value; }
+        public string Cf { get => _cf; set => _cf = value; }
+
 
         /*public void addBankAccount(int bankAccount)
         {
@@ -42,12 +41,16 @@ namespace Es22._03.Banca
 
         }*/
 
-        public Customer(string Name, string Surname, Account account)
+        public Customer(string FullName,string CF ,Account account)
         {
-            this.Name = Name;
-            this.Surname = Surname;
+            this.Fullname = FullName;
+            this.Cf = CF;
             _account = account;
 
         }
+
+
     }
+
+
 }
