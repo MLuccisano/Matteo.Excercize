@@ -9,34 +9,39 @@ namespace Es22._03.Banca
     internal class CommercialBank : Bank
     {
         CentralBank _centralbank;
-        Account _account;
-        Account[] arrayAccount;
+        public Account _account;
+        //Account[] arrayAccount;
+        List<Account> _accounts;
+
         int cont;
         public CentralBank CentralBank { get => _centralbank; }
-        public Account[] ArrayAccount { get => arrayAccount; }
+        //public Account[] ArrayAccount { get => arrayAccount; }
+        public List<Account> Accounts { get => _accounts; }
+
         public CommercialBank(string Name, string RegisteredOffice,string Country, CentralBank centralbank) : base(Name, RegisteredOffice, Country)
         {
             _centralbank = centralbank;
-            arrayAccount = new Account[0];
+            //arrayAccount = new Account[0];
+            _accounts = new List<Account>();
         }
         
-        public void addAccount(Account account)
+        /*private void addAccount(Account account)
         {
             Account[] arrayAccountCopy = new Account[arrayAccount.Length + 1];
             Array.Copy(arrayAccount, arrayAccountCopy, arrayAccount.Length);
             arrayAccount = arrayAccountCopy;
             arrayAccount[cont] = account;
             cont++;
-        }
+            
+        }*/
 
-        public void visualizeAccount(Account[] dataAccount)
+        public void visualizeAccount(List<Account> dataAccount)
         {
             foreach (var account in dataAccount)
             {
-                Console.WriteLine($"Name: {account.Customer.Name}");
-                Console.WriteLine($"Surmame: {account.Customer.Surname}");
+                Console.WriteLine($"Name: {account.Client.Fullname}");
                 Console.WriteLine($"BankAccount: {account.BankAccount}\n");
-                
+                Console.WriteLine($"CodAccount: {account.Client.CodClient}\n");
             }
 
             Console.WriteLine("----------------------------------------\n");
@@ -44,14 +49,28 @@ namespace Es22._03.Banca
 
         //public Account account { get { return _account; }}
 
-        public Account createAccount(string Name, string Surname)
+        public void createAccount(string FullName, string CF)
         {
-            _account = new Account (Name, Surname, this);
-            return _account;
-        }
+            var result = _accounts.FindIndex(data => data.Client.Cf.Equals(CF));
+            if (result == -1)
+            {
+                _account = new Account(FullName, CF, this);
+                _accounts.Add(_account);
+            }
+            else
+            {
+                _account = new Account(FullName, CF, this);
+                _accounts.Insert(result, _account);
+            } 
+        }                  
         public void removeAccount(Account account)
         {
-            account = null;
+            var result = _accounts.FindIndex(data => data.Equals(account));
+            if (result > 0)
+            {
+                _accounts.RemoveAt(result);
+            }
+            else Console.WriteLine($"il cliente {account.Client.Fullname} non esiste");
         }
 
         public override bool Transfer(Bank Destination)

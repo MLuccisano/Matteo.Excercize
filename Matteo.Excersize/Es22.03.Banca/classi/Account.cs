@@ -6,48 +6,68 @@ using System.Threading.Tasks;
 
 namespace Es22._03.Banca
 {
-    internal class Account
+    class Account
     {
         CommercialBank _commercialBank;
-        Customer _Customer;
+        Client _Client;
         int _bankAccount;
         public int BankAccount { get => _bankAccount; }
 
-        public Customer Customer {get{ return _Customer; } }
-        public Account(string Name, string Surname,CommercialBank CommercialBank)
+        public Client Client { get{ return _Client; } }
+        public Account(string FullName, string CF, CommercialBank CommercialBank)
         {
             _commercialBank = CommercialBank;
-            _Customer = new Customer(Name, Surname, this);
-            this._bankAccount = new Random().Next(100,100000);
-            //_Customer.addBankAccount(this._bankAccount);
+            _Client = new Client(FullName, CF, this);
+            this._bankAccount = newBankAccount();
         }
+
+        public int newBankAccount()
+        {
+           int num =  new Random().Next(100, 100000);
+            return num;
+        }
+
     }
-    class Customer
+    class Client
     {
         Account _account;
-        int[] _bankAccount;
-        string _name;
-        string _surname;
-        int cont;
-        
-        public string Surname { get => _surname; set => _surname = value; }
-        public string Name { get => _name; set => _name = value; }
+        string _fullname;
+        string _cf;
+        List<Account> _clients;
+        int codClient;
+        public string Fullname { get => _fullname; set => _fullname = value; }
+        public string Cf { get => _cf; set => _cf = value; }
+        public int CodClient { get => codClient; set => codClient = value; }
 
-        /*public void addBankAccount(int bankAccount)
+        public Client(string FullName,string CF ,Account account)
         {
-            int[] arrayAccountCopy = new int[cont + 1];
-            Array.Copy(_bankAccount, arrayAccountCopy, _bankAccount.Length);
-            _bankAccount = arrayAccountCopy;
-            _bankAccount[cont] = bankAccount;
-
-        }*/
-
-        public Customer(string Name, string Surname, Account account)
-        {
-            this.Name = Name;
-            this.Surname = Surname;
+            this.Fullname = FullName;
+            this.Cf = CF;
             _account = account;
+            this.codClient = CodClient;
+        }
 
+
+        /*public int addBankAccounts(int codClient)
+        {
+            var index = _clients.FindIndex(data => data.CodClient.Equals(codClient));
+            return index;            
+        }*/
+    }
+
+    internal abstract class Asset
+    {
+        Account _account;
+        public abstract decimal currency { get; }
+        public Asset(Account Account)
+        {
+            _account = Account;
         }
     }
+    public class Fiat : Asset
+    { 
+            
+    }
+
+
 }
