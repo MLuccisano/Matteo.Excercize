@@ -9,12 +9,11 @@ namespace Es22._03.Banca
     class SwiftCentralBank : CentralBank, IswiftSystem
     {
         public SwiftCentralBank(string Name, string RegisteredOffice, string Country) : base(Name, RegisteredOffice, Country)
-        { 
-            
+        {            
         }
         public void applySwift()
         {
-            Console.WriteLine("This bank has got a swift system");
+            Console.WriteLine("This central bank has got a swift system");
         }
     }
 }

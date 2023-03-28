@@ -12,7 +12,7 @@ namespace Arrays
             car.addOwner("Carlo");
             car.addOwner("Roberto");
             car.addOwner("Matteo");
-            //car.RemoveOwner("Elena");
+            car.RemoveOwner("Elena");
         }
         public static void DichiarazioneStatica()
         {
@@ -129,15 +129,15 @@ namespace Arrays
                 new Person() { Name = "Marco" },
                 new Person() { Name = "Elena" },
                 new Person() { Name = "Mario" },
-                new Person() { Name = "Fabio" },
+                new Person() { Name = "Elena" },
                };
 
-            var index = Array.IndexOf(items, Name);
-            items[index] = null;
+            var result = Array.FindAll(items, item => item.Name.Equals(Name));
+            //var index = Array.IndexOf(items, Name); utilizzando questa funzione con la variabile result, restituisce il valore -1 e quindi va in eccezione sul ciclo for.
 
             for (int i = 0; i < items.Length; i++)
             {
-                Console.WriteLine(items[i]);
+                Console.WriteLine(items[i].Name);
             }
 
         }

@@ -23,5 +23,10 @@ namespace Es22._03.Banca
             this.Country = Country;
 
         }
+
+        public virtual bool Transfer(Bank Destination)
+        {
+            return false;
+        }
     }
 }
