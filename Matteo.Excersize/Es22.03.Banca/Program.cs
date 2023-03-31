@@ -1,4 +1,5 @@
 ﻿using System;
+using Es22._03.Banca.Assets;
 
 namespace Es22._03.Banca
 {
@@ -9,13 +10,17 @@ namespace Es22._03.Banca
             //Create Banca d'Italia and Russian Central Bank
             SwiftCentralBank bdi = new SwiftCentralBank("Banca d'Italia", "Roma", "Italia"); //bid is Banca d'Italia
             CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russian");// rcb is Russian Central Bank
+            StockMarket stockMarket = new StockMarket("Wallstreet", "NY");
 
             
+
+
             //Create some commercialBank
             CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", bdi);
-            CommercialBank Unicredit = new CommercialBank("Unicredit", "Milan", "Italy", bdi);
-            CommercialBank Sperbank = new CommercialBank("Sperbank", "Moscow", "Russian", rcb);
-            CommercialBank Gazprombank = new CommercialBank("Gazprombank ", "Moscow", "Russian", rcb);
+            #region anotherMethod
+            /* CommercialBank Unicredit = new CommercialBank("Unicredit", "Milan", "Italy", bdi);
+             CommercialBank Sperbank = new CommercialBank("Sperbank", "Moscow", "Russian", rcb);
+             CommercialBank Gazprombank = new CommercialBank("Gazprombank ", "Moscow", "Russian", rcb);*/
 
             /*Add commercial Bank to array of centralBank.
             bdi.AddCommercialBank(IntesaSanpaolo);
@@ -24,12 +29,13 @@ namespace Es22._03.Banca
             rcb.AddCommercialBank(Gazprombank);
             bdi.visualizeCommercialBank(bdi.CommercialBanks);
             rcb.visualizeCommercialBank(rcb.CommercialBanks);*/
-
+            #endregion
             //create a 2 account every commercialBank and add to array of commercialBank.
             IntesaSanpaolo.createAccount("Bruno Vespa", "BDDT66D878DQEQA");
             IntesaSanpaolo.createAccount("Renato Zero", "RNNN84845JDSI64");
-            IntesaSanpaolo.createAccount("Bruno Vespa", "BDDT66D878DQEQA");
-            IntesaSanpaolo.visualizeAccount(IntesaSanpaolo.Accounts);
+            
+            
+
 
             Console.ReadLine();
         }

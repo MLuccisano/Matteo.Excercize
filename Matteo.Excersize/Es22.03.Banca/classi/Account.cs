@@ -11,48 +11,70 @@ namespace Es22._03.Banca
         CommercialBank _commercialBank;
         Client _Client;
         int _bankAccount;
-        public int BankAccount { get => _bankAccount; }
+       
+        
+        public Client Client { get { return _Client; } }
 
-        public Client Client { get{ return _Client; } }
+        public int BankAccount { get => _bankAccount; set => _bankAccount = value; }
+
         public Account(string FullName, string CF, CommercialBank CommercialBank)
         {
             _commercialBank = CommercialBank;
-            _Client = new Client(FullName, CF, this);
-            this._bankAccount = newBankAccount();
+            int index = checkClient(CF);
+            if (index == -1)
+            {
+                _Client = new Client(FullName, CF, this);
+                this.BankAccount = newBankAccount();
+            }
+            else
+            {
+                Client clientExist = _commercialBank.ListAccounts[index].Client;
+                _Client = clientExist;
+                BankAccount = newBankAccount();
+                clientExist.addBankAccounts(this);
+            }
         }
 
-        public int newBankAccount()
+        private int newBankAccount()
         {
-           int num =  new Random().Next(100, 100000);
+            int num = new Random().Next(100, 100000);
             return num;
+        }
+        private int checkClient(string CF)
+        {
+            var result = _commercialBank.ListAccounts.FindIndex(data => data.Client.Cf.Equals(CF));
+            return result;
         }
 
     }
+    
     class Client
     {
-        Account _account;
         string _fullname;
         string _cf;
-        List<Account> _clients;
+        List<Account> _accounts;
         int codClient;
+        
         public string Fullname { get => _fullname; set => _fullname = value; }
         public string Cf { get => _cf; set => _cf = value; }
         public int CodClient { get => codClient; set => codClient = value; }
+        internal List<Account> Accounts { get => _accounts; set => _accounts = value; }
 
-        public Client(string FullName,string CF ,Account account)
+        public Client(string FullName, string CF, Account account)
         {
             this.Fullname = FullName;
             this.Cf = CF;
-            _account = account;
+            //_account = account;
             this.codClient = CodClient;
+            Accounts = new List<Account>();
+            addBankAccounts(account);
         }
 
-
-        /*public int addBankAccounts(int codClient)
+        public void addBankAccounts(Account account)
         {
-            var index = _clients.FindIndex(data => data.CodClient.Equals(codClient));
-            return index;            
-        }*/
+            Accounts.Add(account);
+            
+        }
     }
 
     internal abstract class Asset
@@ -63,10 +85,6 @@ namespace Es22._03.Banca
         {
             _account = Account;
         }
-    }
-    public class Fiat : Asset
-    { 
-            
     }
 
 
