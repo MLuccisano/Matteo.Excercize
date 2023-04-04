@@ -7,34 +7,28 @@ namespace Es22._03.Banca
     {
         static void Main(string[] args)
         {
+
+            //StockMarket WallStreet = new StockMarket("Wallstreet", "NY");
+            //Stocks stocks = new Stocks(STOCKS.TSLA, "Tesla", 100M);
             //Create Banca d'Italia and Russian Central Bank
             SwiftCentralBank bdi = new SwiftCentralBank("Banca d'Italia", "Roma", "Italia"); //bid is Banca d'Italia
             CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russian");// rcb is Russian Central Bank
-            StockMarket stockMarket = new StockMarket("Wallstreet", "NY");
 
-            
+
+
+
+
 
 
             //Create some commercialBank
             CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", bdi);
-            #region anotherMethod
-            /* CommercialBank Unicredit = new CommercialBank("Unicredit", "Milan", "Italy", bdi);
-             CommercialBank Sperbank = new CommercialBank("Sperbank", "Moscow", "Russian", rcb);
-             CommercialBank Gazprombank = new CommercialBank("Gazprombank ", "Moscow", "Russian", rcb);*/
-
-            /*Add commercial Bank to array of centralBank.
-            bdi.AddCommercialBank(IntesaSanpaolo);
-            bdi.AddCommercialBank(Unicredit);
-            rcb.AddCommercialBank(Sperbank);
-            rcb.AddCommercialBank(Gazprombank);
-            bdi.visualizeCommercialBank(bdi.CommercialBanks);
-            rcb.visualizeCommercialBank(rcb.CommercialBanks);*/
-            #endregion
+            
             //create a 2 account every commercialBank and add to array of commercialBank.
             IntesaSanpaolo.createAccount("Bruno Vespa", "BDDT66D878DQEQA");
-            IntesaSanpaolo.createAccount("Renato Zero", "RNNN84845JDSI64");
-            
-            
+            IntesaSanpaolo.A
+            //IntesaSanpaolo.createAccount("Renato Zero", "RNNN84845JDSI64");
+
+
 
 
             Console.ReadLine();

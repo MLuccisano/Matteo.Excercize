@@ -9,10 +9,9 @@ namespace Es22._03.Banca
 {
     internal class CommercialBank : Bank
     {
-        StockMarket sm = new StockMarket("Wallstreet", "NY");
-        Stocks stocks = new Stocks(STOCKS.TSLA, "TESLA", 100);
+
         CentralBank _centralbank;
-        public Account _account;
+        Account _account;
         List<Account> _listAccounts;
         public CentralBank CentralBank { get => _centralbank; }
         internal List<Account> ListAccounts { get => _listAccounts; set => _listAccounts = value; }
@@ -26,30 +25,6 @@ namespace Es22._03.Banca
             
         }
         
-        /*private void addAccount(Account account)
-        {
-            Account[] arrayAccountCopy = new Account[arrayAccount.Length + 1];
-            Array.Copy(arrayAccount, arrayAccountCopy, arrayAccount.Length);
-            arrayAccount = arrayAccountCopy;
-            arrayAccount[cont] = account;
-            cont++;
-            
-        }*/
-
-        /*public void visualizeAccount(List<Account> dataAccount)
-        {
-            foreach (var account in dataAccount)
-            {
-                Console.WriteLine($"Name: {account.Client.Fullname}");
-                foreach (var clientAccount in account.Client.Accounts)
-                {
-                    Console.WriteLine($"BankAccount: {clientAccount.BankAccount}\n");
-                }                
-            }
-            Console.WriteLine("----------------------------------------\n");
-        }*/
-
-        //public Account account { get { return _account; }}
 
         public void createAccount(string FullName, string CF)
         {           
