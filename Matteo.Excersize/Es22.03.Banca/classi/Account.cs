@@ -83,16 +83,6 @@ namespace Es22._03.Banca
             return result;
         }
 
-        public void addFiatAsset(fiat fiat, string name, int value)
-        {
-            Fiat fiatAsset = new Fiat(fiat, name, value);
-            listAsset.Add(fiatAsset);           
-        }
-        public void addCryptoAsset(CRYPTO crypto, string name, int value)
-        {
-            Crypto CryptoAsset = new Crypto(crypto, name, value);
-            listAsset.Add(CryptoAsset);
-        }
     }
     
     class Client

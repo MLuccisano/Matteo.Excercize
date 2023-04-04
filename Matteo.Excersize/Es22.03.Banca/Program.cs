@@ -1,5 +1,6 @@
 ﻿using System;
 using Es22._03.Banca.Assets;
+using Es22._03.Banca.classi;
 
 namespace Es22._03.Banca
 {
@@ -8,29 +9,20 @@ namespace Es22._03.Banca
         static void Main(string[] args)
         {
 
-            //StockMarket WallStreet = new StockMarket("Wallstreet", "NY");
-            //Stocks stocks = new Stocks(STOCKS.TSLA, "Tesla", 100M);
-            //Create Banca d'Italia and Russian Central Bank
-            SwiftCentralBank bdi = new SwiftCentralBank("Banca d'Italia", "Roma", "Italia"); //bid is Banca d'Italia
-            CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russian");// rcb is Russian Central Bank
+            SwiftCentralBank frs = new SwiftCentralBank("Federal Reserve System", "Washington", "USA");
+            CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russian");
 
+            StockMarket WallStreet = new StockMarket("WallStreet", "USA", "NY");
 
-
-
-
-
-
-            //Create some commercialBank
-            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", bdi);
+            CommercialBank AE = new CommercialBank("AmericanExpress", "200 Vesey Street", "USA", frs, WallStreet);
+            AE.buyStock(WallStreet, STOCKS.TSLA, "TESLA", 2);
             
-            //create a 2 account every commercialBank and add to array of commercialBank.
-            IntesaSanpaolo.createAccount("Bruno Vespa", "BDDT66D878DQEQA");
-            IntesaSanpaolo.A
-            //IntesaSanpaolo.createAccount("Renato Zero", "RNNN84845JDSI64");
-
-
-
-
+            #region
+            /*StockMarket FTSEMib = new StockMarket("FTSE Mib", "Italy", "Milan");
+            //Create some commercialBank
+            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", bdi, FTSEMib);
+            IntesaSanpaolo.buyStock(FTSEMib, STOCKS.TSLA, "TESLA", 2);*/
+            #endregion
             Console.ReadLine();
         }
         

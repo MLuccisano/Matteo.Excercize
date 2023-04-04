@@ -18,10 +18,10 @@ namespace Es22._03.Banca.Assets
     {
         fiat _fiat;
         decimal _amoutFiat;
-        public Fiat(fiat fiat, string Name, decimal AmountFiat) : base(Name)
+        public Fiat(fiat fiat, string Name, decimal amount) : base(Name, amount)
         {
             _fiat = fiat;
-            _amoutFiat = AmountFiat;
+            
         }
 
         public void Withdraw(decimal money)

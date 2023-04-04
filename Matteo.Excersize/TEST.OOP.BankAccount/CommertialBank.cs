@@ -18,6 +18,9 @@ namespace TEST.OOP.BankAccount
         int Amount;
         public Account account { get => _account; }
         public CentralBank CentralBank { get => _centralBank; }
+        public object Name { get; internal set; }
+        public object Country { get; internal set; }
+
         public CommertialBank(string City, string Country, string Name, CentralBank Bank, StockMarket stockMarket, CryptoExchange cryptoExchange) : base( City,Country, Name)
         {
             _centralBank = Bank;
@@ -64,14 +67,14 @@ namespace TEST.OOP.BankAccount
                 this.AddCliente(newCliente);
             }
         }
-        //public override bool Transfer(Bank to, FIATDespositRequest data)
-        //{
+        public override bool Transfer(Bank to, FIATDespositRequest data)
+       {
 
-        //    // CommertialBank transferFrom = (CommertialBank) from;
-        //    CommertialBank transferTo = (CommertialBank)to;
+            CommertialBank transferFrom = (CommertialBank)from;
+            CommertialBank transferTo = (CommertialBank)to;
 
-        //    if (this._centralBank.CheckTransfer(this, transferTo, data))
-        //    {
+            if (this._centralBank.CheckTransfer(this, transferTo, data))
+            {
         //        /*  
         //           Prima di procedere con il versamento, verificare che l'ammontare da accreditare è stato effettivamente scalato dal conto del versatore
         //           Quindi  avere una copia dello stato del conto prima di scalere i soldi per  poter confrontare che il prelievo è andato a buon fine.
@@ -80,25 +83,25 @@ namespace TEST.OOP.BankAccount
 
 
         //        // stato conto prima
-        //        this.account.WithdrawFIAT(data._amount);
-        //        // confronto le due cifr dopo il prelievo. 
-        //        Utility.GetAccountInfo(ConsoleColor.Red, this, false, data);
+                this.account.WithdrawFIAT(data._amount);
+                // confronto le due cifr dopo il prelievo. 
+                Utility.GetAccountInfo(ConsoleColor.Red, this, false, data);
 
-        //        transferTo.account.DepositFIAT(data._amount);
-        //        Utility.GetAccountInfo(ConsoleColor.Green, transferTo, true, data);
+                transferTo.account.DepositFIAT(data._amount);
+                Utility.GetAccountInfo(ConsoleColor.Green, transferTo, true, data);
 
 
-        //        Console.BackgroundColor = ConsoleColor.Green;
-        //        Console.ForegroundColor = ConsoleColor.Black;
-        //        Console.WriteLine($"The  amount {data._amount} from the account {data._accountfrom} from the Bank {this.Name} to " +
-        //            $"account {data._accountTo} of from the Bank {to.Name} has been made! ");
-        //        Console.ResetColor();
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine($"The  amount {data._amount} from the account {data._accountfrom} from the Bank {this.Name} to " +
+                    $"account {data._accountTo} of from the Bank {to.Name} has been made! ");
+                Console.ResetColor();
 
-        //        return true;
-        //    }
-        //    return false;
+                return true;
+            }
+           return false;
 
-        //}
+        }
         public void DepositFiat(decimal Amount)
         {
             // Check Client // è biondo! 

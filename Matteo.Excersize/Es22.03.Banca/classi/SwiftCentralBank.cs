@@ -8,7 +8,7 @@ namespace Es22._03.Banca
 {
     class SwiftCentralBank : CentralBank, IswiftSystem
     {
-        public SwiftCentralBank(string Name, string RegisteredOffice, string Country) : base(Name, RegisteredOffice, Country)
+        public SwiftCentralBank(string Name, string city, string Country) : base(Name, city, Country)
         {            
         }
         public void applySwift()

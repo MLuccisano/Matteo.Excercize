@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Es22._03.Banca.classi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,23 +7,16 @@ using System.Threading.Tasks;
 
 namespace Es22._03.Banca
 {
-    public abstract class Bank
+    public abstract class Bank : FinancialIntermediary
     {
         string _name;
-        string _registeredOffice;
         string _country;
 
-        public string RegisteredOffice { get => _registeredOffice; set => _registeredOffice = value; }
-        public string Name { get => _name; set => _name = value; }
-        public string Country { get => _country; set => _country = value; }
-
-        public Bank(string Name, string RegisteredOffice, string Country)
+        public Bank(string Name, string city, string Country) : base (Name, Country, city)
         {
-            this.Name = Name;
-            this.RegisteredOffice = RegisteredOffice;
-            this.Country = Country;
-
         }
+
+
 
         public virtual bool Transfer(Bank Destination)
         {

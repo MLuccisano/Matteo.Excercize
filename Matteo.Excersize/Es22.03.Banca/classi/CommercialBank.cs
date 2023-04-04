@@ -4,21 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Es22._03.Banca.Assets;
+using Es22._03.Banca.classi;
 
 namespace Es22._03.Banca
 {
     internal class CommercialBank : Bank
     {
-
+        StockMarket _stockMarket;
         CentralBank _centralbank;
         Account _account;
         List<Account> _listAccounts;
         public CentralBank CentralBank { get => _centralbank; }
         internal List<Account> ListAccounts { get => _listAccounts; set => _listAccounts = value; }
 
+
         
-        public CommercialBank(string Name, string RegisteredOffice,string Country, CentralBank centralbank) : base(Name, RegisteredOffice, Country)
+        public CommercialBank(string Name, string RegisteredOffice,string Country, CentralBank centralbank, StockMarket stockMarket) : base(Name, RegisteredOffice, Country)
         {
+            _stockMarket = stockMarket;
             _centralbank = centralbank;
             //arrayAccount = new Account[0];
             ListAccounts = new List<Account>();
@@ -50,6 +53,11 @@ namespace Es22._03.Banca
 
             if (this._centralbank.flowMoney(this, bankDestination)) return true;
             else return false;
+        }
+
+        public void buyStock(FinancialIntermediary financialIntermediary, STOCKS stocks, string name, decimal amount)
+        {
+            base.BuyStocks(financialIntermediary, stocks, name, amount);
         }
     }
 }

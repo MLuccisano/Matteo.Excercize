@@ -11,9 +11,11 @@ namespace Es22._03.Banca
         CommercialBank _commercialBank;
         //CommercialBank[] arrayCB;
         List<CommercialBank> _commercialBanks;
+        DateTime _datezone;
+        
 
         int cont = 0;
-        public CentralBank(string Name, string RegisteredOffice, string Country) : base(Name, RegisteredOffice, Country)
+        public CentralBank(string Name,  string City, string Country) : base(Name, City ,Country)
         {
             // arrayCB = new CommercialBank[cont];
             _commercialBanks = new List<CommercialBank>();
@@ -23,21 +25,8 @@ namespace Es22._03.Banca
         public List<CommercialBank> CommercialBanks { get => _commercialBanks; }
         public void AddCommercialBank(CommercialBank commercialBank)
         {
-            /*CommercialBank[]arrayCB2 = new CommercialBank[cont +1];
-            Array.Copy(arrayCB, arrayCB2, arrayCB.Length);
-            arrayCB = arrayCB2;
-            arrayCB[cont] = commercialBank;*/
             _commercialBanks.Add(commercialBank);
 
-        }
-        public void visualizeCommercialBank(List<CommercialBank> dataCommercialBank)
-        {
-            foreach (var commercialBank in dataCommercialBank)
-            {
-                Console.WriteLine($"Name: {commercialBank.Name}");
-                Console.WriteLine($"Registered Office: {commercialBank.RegisteredOffice}");
-                Console.WriteLine($"Country: {commercialBank.Country}\n");
-            }
         }
         /*public void visualizeCommercialBank(CommercialBank[] dataCommercialBank)
         {
@@ -52,7 +41,7 @@ namespace Es22._03.Banca
 
         public bool flowMoney(Bank bankSender, Bank bankDestination)
         {
-            if (bankSender.Country == bankDestination.Country)
+            if (bankSender.country == bankDestination.country)
             {
                 Console.WriteLine("Transfer successful");
                 return true;

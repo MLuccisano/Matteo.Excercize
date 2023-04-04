@@ -1,19 +1,13 @@
 ﻿namespace TEST.OOP.BankAccount.Abstract
 {
-    abstract class Bank
+    abstract class Bank : FinancialIntermediary
     {
-        protected long _code; //> -> BANK
-        protected string _name;
-        protected string _country;
-
 
         public string Name { get => _name; }
         public string Country { get => _country; }
 
-        public Bank(string name, string Country)
+        public Bank(string city, string country, string name) : base (city, country, name)
         {
-            _name = name;
-            _country = Country;
 
         }
 
