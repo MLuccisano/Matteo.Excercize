@@ -21,7 +21,11 @@ namespace Tests
             //MyCommertialBank myCommertialBank = new MyCommertialBank();
             //myCommertialBank.BuyCrypto(myCrypto);
             #endregion
-            
+
+            StockMarket BorsaItaliana = new StockMarket();
+            StockMarket WallStreet = new StockMarket();
+            CryptoExchange cryptoExchange = new CryptoExchange();
+
             bank banca = new bank();
 
             banca.buyCrypto();

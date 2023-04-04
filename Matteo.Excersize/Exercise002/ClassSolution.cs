@@ -106,7 +106,7 @@ namespace OOP.Exercise.Polimorfismo.v002
         {
             IstockIntermediary stockMarket;
             IcryptoIntermediary cryptoExchange;
-                        
+            
             public void buyCrypto()
             {
                 cryptoExchange.buyCrypto();                
