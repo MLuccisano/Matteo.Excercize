@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,63 +15,58 @@ namespace Es22._03.Banca
         int _bankAccount;
         List<Asset> listAsset;
 
-        
-        public Client Client { get { return _Client; } }
+        //fiat moneta;
 
-        public int BankAccount { get => _bankAccount; set => _bankAccount = value; }
+        public Client Client {get => _Client; } 
+        public int BankAccount { get => _bankAccount; }
 
-        public Account(string FullName, string CF, CommercialBank CommercialBank)
+        public List<Asset> ListAsset { get => listAsset; }
+
+        public Account(string FullName, string CF, string DateOfBirth,CommercialBank CommercialBank, string Culture)
         {
             _commercialBank = CommercialBank;
-            int index = checkClient(CF);
-            if (index == -1)
+            CultureInfo culture = new CultureInfo(Culture);
+            string dateFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
+            DateTime output;
+            //moneta = (fiat)_commercialBank.Moneta;
+
+
+            if (DateTime.TryParseExact(DateOfBirth, dateFormat, culture, DateTimeStyles.None, out output))
             {
-                BankAccount = newBankAccount();
-                _Client = new Client(FullName, CF, this);
-                
+                if (DateTime.Now.AddYears(-18) > output)
+                {
+                    int index = checkClient(CF);
+                    if (index == -1)
+                    {
+                        _bankAccount = newBankAccount();
+                        _Client = new Client(FullName, CF, this);
+                    }
+                    else
+                    {
+                        Client clientExist = _commercialBank.ListAccounts[index].Client;
+                        _Client = clientExist;
+                        _bankAccount = newBankAccount();
+                        clientExist.addBankAccounts(this);
+                    }
+                    listAsset = new List<Asset>();
+                    addAsset(_commercialBank.Moneta);
+                }
+                else Console.WriteLine("Sei minorenne. No conto corrente");
+
+
             }
             else
             {
-                Client clientExist = _commercialBank.ListAccounts[index].Client;
-                _Client = clientExist;
-                BankAccount = newBankAccount();
-                clientExist.addBankAccounts(this);
-            }
-            listAsset = new List<Asset>();
-            
+                Console.WriteLine("......");
+            }            
         }
 
-        /*private void addFiatAsset(CommercialBank commercialBank)
+        private void addAsset(fiat fiat)
         {
-            Fiat assetFiat;
-            fiat fiatAsset;
-            string name;
-            decimal value;
-            switch (commercialBank.Country)
-            {                
-                case "Italy": 
-                    fiatAsset = fiat.EURO;
-                    name = "Euro";
-                    value = 1;
-                    
-                    break;
-                case "USA":
-                    fiatAsset = fiat.USD;
-                    name = "Dollar";
-                    value = 2;
-                    
-                    break;
-                case "Swizeland":
-                    fiatAsset = fiat.CHF;
-                    name = "CHF";
-                    value = 3;                   
-                    break;  
-                    
-            }
-             
-            
+            Fiat fiatAsset = new Fiat(fiat, fiat.ToString(), 0);
+            listAsset.Add(fiatAsset);
+        }
 
-        }*/
         private int newBankAccount()
         {
             int num = new Random().Next(100, 100000);
@@ -81,6 +77,14 @@ namespace Es22._03.Banca
         {
             var result = _commercialBank.ListAccounts.FindIndex(data => data.Client.Cf.Equals(CF));
             return result;
+        }
+
+        internal void Deposit(decimal amount)
+        {
+            Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Moneta.ToString()));
+            Fiat fiatAsset = (Fiat)asset;
+            fiatAsset.Deposit(amount);
+                     
         }
 
     }

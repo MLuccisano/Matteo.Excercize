@@ -16,8 +16,7 @@ namespace Es22._03.Banca.Assets
     }
     class Fiat : Asset
     {
-        fiat _fiat;
-        decimal _amoutFiat;
+        fiat _fiat;      
         public Fiat(fiat fiat, string Name, decimal amount) : base(Name, amount)
         {
             _fiat = fiat;
@@ -27,7 +26,7 @@ namespace Es22._03.Banca.Assets
         public void Withdraw(decimal money)
         {
             Amount -= money;
-        }
+        } 
 
         public void Deposit(decimal money)
         {

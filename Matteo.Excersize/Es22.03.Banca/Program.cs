@@ -8,21 +8,20 @@ namespace Es22._03.Banca
     {
         static void Main(string[] args)
         {
-
+            SwiftCentralBank BDI = new SwiftCentralBank("Banca d'Italia", "Roma", "Italia");
             SwiftCentralBank frs = new SwiftCentralBank("Federal Reserve System", "Washington", "USA");
             CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russian");
 
-            StockMarket WallStreet = new StockMarket("WallStreet", "USA", "NY");
+            StockMarket WallStreet = new StockMarket("WallStreet", "USA", "NY", "Eastern Standard Time");
+            StockMarket FTSEMib = new StockMarket("FTSE Mib", "Italian", "Milan", "Central Europe Standard Time");
+            StockMarket Nikkei = new StockMarket("Nikkei", "Japanese", "Tokyo", "Tokyo Standard Time");
 
-            CommercialBank AE = new CommercialBank("AmericanExpress", "200 Vesey Street", "USA", frs, WallStreet);
-            AE.buyStock(WallStreet, STOCKS.TSLA, "TESLA", 2);
-            
-            #region
-            /*StockMarket FTSEMib = new StockMarket("FTSE Mib", "Italy", "Milan");
-            //Create some commercialBank
-            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", bdi, FTSEMib);
-            IntesaSanpaolo.buyStock(FTSEMib, STOCKS.TSLA, "TESLA", 2);*/
-            #endregion
+            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", BDI, FTSEMib,fiat.EURO);
+            IntesaSanpaolo.createAccount("Matteo Luccisano", "MOOWEE37Z57A156X", "07/03/1998","it");
+            IntesaSanpaolo.Deposit(100, getNumberAccount.getBankAccount(IntesaSanpaolo, "MOOWEE37Z57A156X"));
+
+            IntesaSanpaolo.visualizeAccount();
+           
             Console.ReadLine();
         }
         

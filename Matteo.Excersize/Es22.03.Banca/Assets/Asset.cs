@@ -9,7 +9,6 @@ namespace Es22._03.Banca.Assets
     public abstract class Asset
     {
         string _name;
-        string _country;
         decimal _amount;
 
         public string Name { get => _name; set => _name = value; }

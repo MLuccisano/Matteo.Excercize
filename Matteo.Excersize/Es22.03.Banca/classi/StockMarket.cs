@@ -13,7 +13,8 @@ namespace Es22._03.Banca.classi
         GAZP,
         HND,
         BMW1,
-        PETR4
+        PETR4,
+        GNR
     }
 
 
@@ -21,22 +22,27 @@ namespace Es22._03.Banca.classi
     {
         Stock _stock;
         string _country;
+        string _UTC;
+        
 
-        public StockMarket(string name, string country, string city) : base(name, country, city)
+        public StockMarket(string name, string country, string city, string UTC) : base(name, country, city)
         {
             _country = country;
-            
-
+            _UTC = UTC;
         }
 
 
         protected override Asset BuyStocks(FinancialIntermediary financialIntermediary, STOCKS stocks, string Name, decimal Amount)
         {
-            if (CheckOpenStockMarket(this) == false)
+            //Console.WriteLine($"the O'clock of {financialIntermediary.name} from {financialIntermediary.city} is {timezoneConverter(financialIntermediary)}");
+            if (CheckOpenStockMarket(_UTC) == false)
             {
-                Console.WriteLine("Il mercato e' chiuso");
+                Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is close ");
             }
-            else _stock = new Stock(stocks, Name, Amount);
+            else
+            {
+                Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is open ");
+            } 
             return _stock;
         }
 
@@ -50,24 +56,23 @@ namespace Es22._03.Banca.classi
         }
 
         #region TimezoneConverter
-        static DateTime timezoneConverter(FinancialIntermediary financialIntermediary)
+        /*static DateTime timezoneConverter(FinancialIntermediary financialIntermediary)
         {
             DateTime timezone = new DateTime();
             if (financialIntermediary.city == "NY") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Eastern Standard Time");
-            if (financialIntermediary.city == "Milan" && financialIntermediary.city == "Frankfurt") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Central European Time");
-            if (financialIntermediary.city == "Moscow") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Moscow Standard Time");
-            if (financialIntermediary.city == "Tokyo") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Japanese Standard Time");
-            if (financialIntermediary.city == "Sao Paulo") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Brasília Time");
+            else if (financialIntermediary.city == "Milan" || financialIntermediary.city == "Frankfurt") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Central Europe Standard Time");
+            else if (financialIntermediary.city == "Moscow") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Moscow Standard Time");
+            else if (financialIntermediary.city == "Tokyo") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Tokyo Standard Time");
+            else if (financialIntermediary.city == "Sao Paulo") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Brasília Time");
             return timezone;
-        }
+        }*/
 
-        static bool CheckOpenStockMarket(FinancialIntermediary financialIntermediary)
+        static bool CheckOpenStockMarket(string UTC)
         {
 
-            DateTime timezone = timezoneConverter(financialIntermediary);
-            DateTime timezoneUTC = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(timezone, TimeZoneInfo.Local.Id, "Greenwich Mean Time");
-
-            if (timezoneUTC.Hour >= 15 && timezoneUTC.Hour <= 22) return true;
+            //DateTime timezoneCity = timezoneConverter(financialIntermediary);
+            DateTime timezoneCity = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, UTC);
+            if (timezoneCity.Hour >= 9 && timezoneCity.Minute >= 00 && timezoneCity.Second >= 00 && timezoneCity.Hour <= 17 && timezoneCity.Minute <= 30 && timezoneCity.Second <= 00) return true;
             else return false;
         }
         #endregion
