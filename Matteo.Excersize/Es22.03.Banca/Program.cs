@@ -8,78 +8,40 @@ namespace Es22._03.Banca
     {
         static void Main(string[] args)
         {
+            #region CentralBank
             SwiftCentralBank BDI = new SwiftCentralBank("Banca d'Italia", "Roma", "Italia");
             SwiftCentralBank frs = new SwiftCentralBank("Federal Reserve System", "Washington", "USA");
-            CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russian");
+            CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russia");
+            #endregion
 
+            #region StockMarket
             StockMarket WallStreet = new StockMarket("WallStreet", "USA", "NY", "Eastern Standard Time");
             StockMarket FTSEMib = new StockMarket("FTSE Mib", "Italian", "Milan", "Central Europe Standard Time");
             StockMarket Nikkei = new StockMarket("Nikkei", "Japanese", "Tokyo", "Tokyo Standard Time");
+            StockMarket MOEX = new StockMarket("MOEX", "Russia", "Moscow", "Russian Standard Time");
+            #endregion
 
-            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", BDI, FTSEMib,fiat.EURO);
+            #region Commercial bank: Intesa Sanpaolo
+            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", BDI, FTSEMib,fiat.EURO);            
             IntesaSanpaolo.createAccount("Matteo Luccisano", "MOOWEE37Z57A156X", "07/03/1998","it");
-            IntesaSanpaolo.Deposit(100, getNumberAccount.getBankAccount(IntesaSanpaolo, "MOOWEE37Z57A156X"));
+            int MLBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "MOOWEE37Z57A156X");
+            IntesaSanpaolo.createAccount("Pietro Ornello", "DD8DJ4DKLYHB954", "03/10/1995", "it");
+            int POBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "DD8DJ4DKLYHB954");
+            IntesaSanpaolo.Deposit(250000M, MLBankAcccount);
+            
+            #endregion
 
-            IntesaSanpaolo.visualizeAccount();
-           
+            #region Commercial bank: VTB Bank
+            CommercialBank VTBBank = new CommercialBank("VTB Bank", "Moscow","Russia", rcb, MOEX, fiat.RUB);
+            VTBBank.createAccount("Ivan Fraffesky", "IVFHJ43545JRFIOOED", "23/05/1969", "ru");
+            int IFBankAccount = getNumberAccount.getBankAccount(VTBBank, "IVFHJ43545JRFIOOED");
+            VTBBank.Deposit(50M, IFBankAccount);            
+            #endregion
+
+            //IntesaSanpaolo.Transfer(1500, VTBBank, MLBankAcccount, IFBankAccount);
+            IntesaSanpaolo.Transfer(1500M, IntesaSanpaolo, MLBankAcccount, POBankAcccount);       
             Console.ReadLine();
         }
         
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*Account GFalchi = Unicredit.createAccount("Giorgia", "Falchi");
-Account CConti = Unicredit.createAccount("Carlo", "Conti");
-Unicredit.addAccount(GFalchi);
-Unicredit.addAccount(CConti);
-
-Account ISkanosky = Sperbank.createAccount("Ivan", "Skanosky");
-Account DPetrenko = Sperbank.createAccount("Dimitri", "Petrenko");
-Sperbank.addAccount(ISkanosky);
-Sperbank.addAccount(DPetrenko);
-
-Account VReznov = Gazprombank.createAccount("Viktor", "Reznov");
-Account CCraccosky = Gazprombank.createAccount("Carlo", "Craccosky");
-Gazprombank.addAccount(VReznov);
-Gazprombank.addAccount(CCraccosky);*/
-
-/*Visualize every account associated at commercial Bank, that created them.
-Console.WriteLine("The Account into the commercialBank Intesa Sanpaolo");
-IntesaSanpaolo.visualizeAccount(IntesaSanpaolo.ArrayAccount);
-
-Console.WriteLine("The Account into the commercialBank Unicredit");
-Unicredit.visualizeAccount(Unicredit.ArrayAccount);
-
-Console.WriteLine("The Account into the commercialBank Sperbank");
-Sperbank.visualizeAccount(Sperbank.ArrayAccount);
-
-Console.WriteLine("The Account into the commercialBank Gazprombank");
-Gazprombank.visualizeAccount(Gazprombank.ArrayAccount);*(
-
-
-/*bdi.visualizeCommercialBank(bdi.ArrayCB);
-rcb.visualizeCommercialBank(rcb.ArrayCB); In these methods visualizes a data of commercialBank created by a CentralBank of bdi and rcb, separated*/

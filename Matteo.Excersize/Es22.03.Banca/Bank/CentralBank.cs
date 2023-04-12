@@ -11,10 +11,6 @@ namespace Es22._03.Banca
         CommercialBank _commercialBank;
         //CommercialBank[] arrayCB;
         List<CommercialBank> _commercialBanks;
-        DateTime _datezone;
-        
-
-        int cont = 0;
         public CentralBank(string Name,  string City, string Country) : base(Name, City ,Country)
         {
             // arrayCB = new CommercialBank[cont];
@@ -43,7 +39,6 @@ namespace Es22._03.Banca
         {
             if (bankSender.country == bankDestination.country)
             {
-                Console.WriteLine("Transfer successful");
                 return true;
             } 
             else

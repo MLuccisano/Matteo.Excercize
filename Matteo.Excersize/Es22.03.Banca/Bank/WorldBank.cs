@@ -11,11 +11,7 @@ namespace Es22._03.Banca
         public static bool checkTransfer(CommercialBank bankSender, CommercialBank bankDestination)
         {
 
-            if (bankSender.CentralBank is IswiftSystem && bankDestination.CentralBank is IswiftSystem)
-            {
-                Console.WriteLine("Transfer Successful");
-                return true;
-            } 
+            if (bankSender.CentralBank is IswiftSystem && bankDestination.CentralBank is IswiftSystem) return true;
             else 
             {
                 if (bankSender.CentralBank is not IswiftSystem) Console.WriteLine($"Transfer locked by the World Bank swiftsystem. The Bank {bankSender.Name} from {bankSender.Country} is under sanction");

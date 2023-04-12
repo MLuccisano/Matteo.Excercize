@@ -12,25 +12,52 @@ namespace Es22._03.Banca.Assets
         GBP,
         USD,
         YEN,
-        CHF
+        RUB
     }
     class Fiat : Asset
     {
-        fiat _fiat;      
+        fiat _fiat;
+        decimal maxWithdraw;
+        
         public Fiat(fiat fiat, string Name, decimal amount) : base(Name, amount)
         {
             _fiat = fiat;
             
         }
 
-        public void Withdraw(decimal money)
+        internal bool Withdraw(decimal money, string dateMovimentNow, string dateLastMoviment)
         {
-            Amount -= money;
+
+            int result = dateMovimentNow.CompareTo(dateLastMoviment);
+
+            switch (result)
+            {
+                case 0:
+                    maxWithdraw += money;
+                    if (maxWithdraw <= 10000M)
+                    {
+                        Amount -= money;
+                        return true;
+                    } 
+                    else return false;
+                case 1:
+                    maxWithdraw = 0;
+                    maxWithdraw += money;
+                    if (maxWithdraw <= 10000M)
+                    {
+                        Amount -= money;
+                        return true;
+                    }
+                    else return false;
+            }
+            return false;
         } 
 
-        public void Deposit(decimal money)
+        internal void Deposit(decimal money)
         {
             Amount += money;
         }
+
+        
     }
 }

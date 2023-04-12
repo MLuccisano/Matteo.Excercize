@@ -15,21 +15,21 @@ namespace Es22._03.Banca
         int _bankAccount;
         List<Asset> listAsset;
 
-        //fiat moneta;
-
+        #region properties
         public Client Client {get => _Client; } 
         public int BankAccount { get => _bankAccount; }
 
         public List<Asset> ListAsset { get => listAsset; }
+        #endregion
 
+        #region ctor Account
         public Account(string FullName, string CF, string DateOfBirth,CommercialBank CommercialBank, string Culture)
         {
             _commercialBank = CommercialBank;
             CultureInfo culture = new CultureInfo(Culture);
             string dateFormat = CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern;
             DateTime output;
-            //moneta = (fiat)_commercialBank.Moneta;
-
+            
 
             if (DateTime.TryParseExact(DateOfBirth, dateFormat, culture, DateTimeStyles.None, out output))
             {
@@ -49,21 +49,23 @@ namespace Es22._03.Banca
                         clientExist.addBankAccounts(this);
                     }
                     listAsset = new List<Asset>();
-                    addAsset(_commercialBank.Moneta);
+                    addAsset(_commercialBank.Currency);
                 }
-                else Console.WriteLine("Sei minorenne. No conto corrente");
+                else Console.WriteLine("You are not adult! you cannot open any bankAccounts");
 
 
             }
             else
             {
-                Console.WriteLine("......");
+                Console.WriteLine("The date format is wrong");
             }            
         }
+        #endregion
 
+        #region Method for Account: AddAsset, newBankAccount, CheckClient, Deposit, withdraw
         private void addAsset(fiat fiat)
         {
-            Fiat fiatAsset = new Fiat(fiat, fiat.ToString(), 0);
+            Fiat fiatAsset = new Fiat(fiat, fiat.ToString(), 0M);
             listAsset.Add(fiatAsset);
         }
 
@@ -81,14 +83,21 @@ namespace Es22._03.Banca
 
         internal void Deposit(decimal amount)
         {
-            Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Moneta.ToString()));
+            Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Currency.ToString()));
             Fiat fiatAsset = (Fiat)asset;
-            fiatAsset.Deposit(amount);
-                     
+            fiatAsset.Deposit(amount);                   
+        }
+        internal bool Withdraw(decimal amount, string dateMovimentNow, string dateLastMoviment)
+        {
+            Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Currency.ToString()));
+            Fiat fiatAsset = (Fiat)asset;
+            return fiatAsset.Withdraw(amount, dateMovimentNow, dateLastMoviment);
         }
 
+        #endregion
     }
-    
+
+    #region Class Client   
     class Client
     {
         string _fullname;
@@ -109,10 +118,9 @@ namespace Es22._03.Banca
 
         public void addBankAccounts(Account account)
         {
-            Accounts.Add(account);
-            
+            Accounts.Add(account);            
         }
     }
-
+    #endregion
 
 }
