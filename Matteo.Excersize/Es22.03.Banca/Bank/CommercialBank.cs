@@ -89,8 +89,14 @@ namespace Es22._03.Banca
         public void buyStock(int bankAccount, FinancialIntermediary financialIntermediary, STOCKS stocks, string name, decimal amount)
         {
             Withdraw(amount, bankAccount);
-            Asset stock = base.BuyStocks(financialIntermediary, stocks, name, amount);
-            _account.ListAsset.Add(stock);
+            Asset _stock = base.BuyStocks(financialIntermediary, stocks, name, amount);
+            if (_stock != null)
+            {
+                Stock stock = (Stock)_stock;
+                _account.ListAsset.Add(stock);
+            }
+            else Console.WriteLine($"Do not exist the stock {_stock.Name}");
+
         }
         public void Deposit(decimal amount,int bankAccount)
         {
@@ -110,18 +116,27 @@ namespace Es22._03.Banca
             {
 
                 log = String.Format($"{dateMovimentNow} ,{account.Client.Fullname}, {account.BankAccount}, - {amount} {Currency}, currency: {account.ListAsset[indexAsset].Amount} {Currency}\n");
-                writeLogs(log, @"f:\log\", "log.txt");
+                writeLogs(log, @"c:\log\", "log.txt");
                 return true;
             }
             else
             {
                 log = String.Format($"{dateMovimentNow}, {account.Client.Fullname}, {account.BankAccount}, Withdraw locked. \n");
-                writeLogs(log, @"f:\log\", "log.txt");
+                writeLogs(log, @"C:\log\", "log.txt");
                 return false;
             }
         }
-            
 
+        public void visualizeStockAcquired(int bankAccount)
+        {
+            Account account = ListAccounts.Find(account => account.BankAccount.Equals(bankAccount));
+
+            foreach (var stock in account.ListAsset)
+            {
+                if (stock is Stock) Console.WriteLine(stock.Name);
+                else continue;  
+            }
+        }
         
         #endregion
 
