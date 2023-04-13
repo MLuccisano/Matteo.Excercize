@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Es22._03.Banca.Assets;
+using Es22._03.Banca.classi;
 
 namespace Es22._03.Banca
 {
@@ -49,7 +50,7 @@ namespace Es22._03.Banca
                         clientExist.addBankAccounts(this);
                     }
                     listAsset = new List<Asset>();
-                    addAsset(_commercialBank.Currency);
+                    addFiatAsset(_commercialBank.Currency);
                 }
                 else Console.WriteLine("You are not adult! you cannot open any bankAccounts");
 
@@ -63,10 +64,16 @@ namespace Es22._03.Banca
         #endregion
 
         #region Method for Account: AddAsset, newBankAccount, CheckClient, Deposit, withdraw
-        private void addAsset(fiat fiat)
+        private void addFiatAsset(fiat fiat)
         {
             Fiat fiatAsset = new Fiat(fiat, fiat.ToString(), 0M);
+             
             listAsset.Add(fiatAsset);
+        }
+
+        private void addStockAsset(Stock stock)
+        {
+            listAsset.Add(stock);           
         }
 
         private int newBankAccount()
@@ -87,11 +94,11 @@ namespace Es22._03.Banca
             Fiat fiatAsset = (Fiat)asset;
             fiatAsset.Deposit(amount);                   
         }
-        internal bool Withdraw(decimal amount, string dateMovimentNow, string dateLastMoviment)
+        internal bool Withdraw(decimal amount, string dateMovimentNow)
         {
             Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Currency.ToString()));
             Fiat fiatAsset = (Fiat)asset;
-            return fiatAsset.Withdraw(amount, dateMovimentNow, dateLastMoviment);
+            return fiatAsset.Withdraw(amount);
         }
 
         #endregion

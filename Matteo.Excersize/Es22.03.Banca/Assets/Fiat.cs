@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Es22._03.Banca.Assets
 {
+    #region Enumerator of currency
     public enum fiat
     {
         EURO,
@@ -14,50 +15,76 @@ namespace Es22._03.Banca.Assets
         YEN,
         RUB
     }
+    #endregion
     class Fiat : Asset
     {
+        #region Variable
         fiat _fiat;
-        decimal maxWithdraw;
-        
+        const decimal limitWithdrawDay = 10000M;
+        const decimal limitWithdrawMonth = 30000M;
+        decimal withdrawDay;
+        decimal withdrawMonth;
+        DateTime dateLastMoviment;
+        #endregion
         public Fiat(fiat fiat, string Name, decimal amount) : base(Name, amount)
         {
-            _fiat = fiat;
-            
+            _fiat = fiat;            
         }
 
-        internal bool Withdraw(decimal money, string dateMovimentNow, string dateLastMoviment)
+        #region Operation: Withdraw
+        internal bool Withdraw(decimal money)
+        {            
+            withdrawDay += money;
+            withdrawMonth += money;
+            dateLastMoviment = DateTime.Now;
+            return checkWithDraw(money);
+
+        }
+
+        // The method "checkWithDraw" is a method that return a bool value and check if exceeded a limit withdraw a day or month;
+        private bool checkWithDraw(decimal money)
         {
-
-            int result = dateMovimentNow.CompareTo(dateLastMoviment);
-
-            switch (result)
+            if (withdrawDay <= limitWithdrawDay)
             {
-                case 0:
-                    maxWithdraw += money;
-                    if (maxWithdraw <= 10000M)
-                    {
-                        Amount -= money;
-                        return true;
-                    } 
-                    else return false;
-                case 1:
-                    maxWithdraw = 0;
-                    maxWithdraw += money;
-                    if (maxWithdraw <= 10000M)
+                Amount -= money;
+                return true;
+            }
+            else
+            {
+                if (dateLastMoviment.ToShortDateString() != DateTime.Now.ToShortDateString())
+                {
+                    withdrawDay -= 10000;
+                    if (checkWithDrawMonth(money))
                     {
                         Amount -= money;
                         return true;
                     }
                     else return false;
+                }
+                else return false;
             }
-            return false;
-        } 
+            
+        }
 
+        private bool checkWithDrawMonth(decimal money)
+        {
+            if (withdrawMonth <= limitWithdrawMonth) return true;
+            else
+            {
+                if (dateLastMoviment.Month != DateTime.Now.Month)
+                {
+                    withdrawMonth -= 30000;
+                    return true;
+                }
+                else return false;
+            }
+        }
+        #endregion
+
+        // Method Deposit 
         internal void Deposit(decimal money)
         {
             Amount += money;
-        }
-
-        
+        }        
     }
 }

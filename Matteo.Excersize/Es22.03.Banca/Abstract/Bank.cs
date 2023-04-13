@@ -21,7 +21,6 @@ namespace Es22._03.Banca
         }
 
 
-
         public virtual void Transfer(decimal amount ,Bank Destination, int bankAccountSender, int BankAccountDestination)
         {
             

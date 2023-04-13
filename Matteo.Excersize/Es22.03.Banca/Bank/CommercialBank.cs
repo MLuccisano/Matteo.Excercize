@@ -84,13 +84,13 @@ namespace Es22._03.Banca
                 else Console.WriteLine("Amount not transfered");
             }
             else Console.WriteLine("Amount not transfered");
-        }
+        }     
 
-        
-
-        public void buyStock(FinancialIntermediary financialIntermediary, STOCKS stocks, string name, decimal amount)
+        public void buyStock(int bankAccount, FinancialIntermediary financialIntermediary, STOCKS stocks, string name, decimal amount)
         {
-            base.BuyStocks(financialIntermediary, stocks, name, amount);
+            Withdraw(amount, bankAccount);
+            Asset stock = base.BuyStocks(financialIntermediary, stocks, name, amount);
+            _account.ListAsset.Add(stock);
         }
         public void Deposit(decimal amount,int bankAccount)
         {
@@ -105,35 +105,27 @@ namespace Es22._03.Banca
         {
             Account account = ListAccounts.Find(account => account.BankAccount.Equals(bankAccount));
             var indexAsset = account.ListAsset.FindIndex(asset => asset.Name.Equals(Currency.ToString()));
-            string dateLastMoviment = readLogs(bankAccount);
-            try 
+
+            if (account.Withdraw(amount, dateMovimentNow) == true) // account.Withdraw is a method that return a bool value
             {
 
-                if (account.Withdraw(amount, dateMovimentNow, dateLastMoviment) == true && account.ListAsset[indexAsset].Amount > amount) // account.Withdraw is a method that return a bool value
-                {
-
-                    log = String.Format($"{dateMovimentNow}, {account.Client.Fullname}, {account.BankAccount}, - {amount} {Currency}, currency: {account.ListAsset[indexAsset].Amount} {Currency}\n");
-                    writeLogs(log, @"f:\log\", "log.txt");
-                    return true;
-                }
-                else
-                {
-                    log = String.Format($"{dateMovimentNow}, {account.Client.Fullname}, {account.BankAccount}, Withdraw locked. \n");
-                    writeLogs(log, @"f:\log\", "log.txt");
-                    return false;
-                }
+                log = String.Format($"{dateMovimentNow} ,{account.Client.Fullname}, {account.BankAccount}, - {amount} {Currency}, currency: {account.ListAsset[indexAsset].Amount} {Currency}\n");
+                writeLogs(log, @"f:\log\", "log.txt");
+                return true;
             }
-            catch
+            else
             {
-                Console.WriteLine($"the BankAccount {bankAccount} haven't got enough money to withdraw");
-
+                log = String.Format($"{dateMovimentNow}, {account.Client.Fullname}, {account.BankAccount}, Withdraw locked. \n");
+                writeLogs(log, @"f:\log\", "log.txt");
+                return false;
             }
-            return false;
-
         }
+            
+
+        
         #endregion
 
-        #region Methods Write and Read Logs
+        #region Methods WriteLogs
         private void writeLogs(string Log, string path, string fileName)
         {
             if (!Directory.Exists(path))
@@ -141,29 +133,6 @@ namespace Es22._03.Banca
                 Directory.CreateDirectory(path);                
             }
             else File.AppendAllText(Path.Combine(path, fileName), Log);
-        }
-        private string readLogs(int bankAccount)
-        {
-            var index = ListAccounts.FindIndex(account => account.BankAccount.Equals(bankAccount));
-            string[] line = File.ReadAllLines(@"f:\log\log.txt");
-            string[] logs = new string[line.Length / 5];
-            Array.Reverse(line);
-            try
-            {
-                for (int i = 0; i < line.Length; i++)
-                {
-                    string log = line[i].ToString();
-                    logs = log.Split(",");
-                    if (int.Parse(logs[2]) == bankAccount) return logs[0];
-                    else continue;
-                }
-                
-            }
-            catch
-            {
-                Console.WriteLine($"the bankAccount {bankAccount} cannot to withdraw");
-            }
-            return null;
         }
         #endregion
     }

@@ -18,13 +18,13 @@ namespace Es22._03.Banca.classi
     }
 
 
-    public class StockMarket : FinancialIntermediary
+    class StockMarket : FinancialIntermediary
     {
         Stock _stock;
         string _country;
         string _UTC;
         
-
+        
         public StockMarket(string name, string country, string city, string UTC) : base(name, country, city)
         {
             _country = country;
@@ -34,48 +34,41 @@ namespace Es22._03.Banca.classi
 
         protected override Asset BuyStocks(FinancialIntermediary financialIntermediary, STOCKS stocks, string Name, decimal Amount)
         {
-            //Console.WriteLine($"the O'clock of {financialIntermediary.name} from {financialIntermediary.city} is {timezoneConverter(financialIntermediary)}");
             if (CheckOpenStockMarket(_UTC) == false)
             {
-                Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is close ");
+                Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is close");
             }
             else
             {
-                Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is open ");
+                _stock = new Stock(stocks, stocks.ToString(), Amount);
             } 
             return _stock;
         }
 
-        class Stock : Asset
-        {
-            STOCKS _stocks;
-            public Stock(STOCKS stocks, string Name,decimal amount) : base(Name, amount)
-            {
-                _stocks = stocks;
-            }
-        }
-
-        #region TimezoneConverter
-        /*static DateTime timezoneConverter(FinancialIntermediary financialIntermediary)
-        {
-            DateTime timezone = new DateTime();
-            if (financialIntermediary.city == "NY") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Eastern Standard Time");
-            else if (financialIntermediary.city == "Milan" || financialIntermediary.city == "Frankfurt") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Central Europe Standard Time");
-            else if (financialIntermediary.city == "Moscow") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Moscow Standard Time");
-            else if (financialIntermediary.city == "Tokyo") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Tokyo Standard Time");
-            else if (financialIntermediary.city == "Sao Paulo") timezone = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, "Brasília Time");
-            return timezone;
-        }*/
-
         static bool CheckOpenStockMarket(string UTC)
-        {
+        {            
+            DateTime timezoneCity =DateTime.Parse(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, UTC).ToString());
+            DateTime OpenMarket = DateTime.Parse("09:00:00");
+            DateTime CloseMarket = DateTime.Parse("17:00:00");
+            // if (timezoneCity.Hour >= 9 && timezoneCity.Minute >= 00 && timezoneCity.Second >= 00 && timezoneCity.Hour <= 17 && timezoneCity.Minute < 30) return true;
 
-            //DateTime timezoneCity = timezoneConverter(financialIntermediary);
-            DateTime timezoneCity = TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, UTC);
-            if (timezoneCity.Hour >= 9 && timezoneCity.Minute >= 00 && timezoneCity.Second >= 00 && timezoneCity.Hour <= 17 && timezoneCity.Minute <= 30 && timezoneCity.Second <= 00) return true;
+            int isOpen = timezoneCity.CompareTo(OpenMarket);
+            int isClose = timezoneCity.CompareTo(CloseMarket);
+
+            if (isOpen > 0 && isClose < 0) return true;
             else return false;
+    
+            
         }
-        #endregion
+    }
+    class Stock : Asset
+    {
+        STOCKS _stocks;
+
+        public Stock(STOCKS stocks, string Name, decimal amount) : base(Name, amount)
+        {
+            _stocks = stocks;
+        }
     }
 
 }
