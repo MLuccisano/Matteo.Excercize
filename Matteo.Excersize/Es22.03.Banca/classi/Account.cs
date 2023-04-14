@@ -71,7 +71,7 @@ namespace Es22._03.Banca
             listAsset.Add(fiatAsset);
         }
 
-        private void addStockAsset(Stock stock)
+        internal void addStockAsset(Stock stock)
         {
             listAsset.Add(stock);           
         }

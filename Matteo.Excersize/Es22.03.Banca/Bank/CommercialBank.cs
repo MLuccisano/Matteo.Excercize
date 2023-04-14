@@ -88,9 +88,17 @@ namespace Es22._03.Banca
 
         public void buyStock(int bankAccount, FinancialIntermediary financialIntermediary, STOCKS stocks, string name, decimal amount)
         {
-            Withdraw(amount, bankAccount);
+            /*Withdraw(amount, bankAccount);
             Asset stock = base.BuyStocks(financialIntermediary, stocks, name, amount);
-            _account.ListAsset.Add(stock);
+            _account.ListAsset.Add(stock);*/
+            Withdraw(amount, bankAccount);
+            Asset _stock = base.BuyStocks(financialIntermediary, stocks, name, amount);
+            if (_stock != null)
+            {
+                Stock stock = (Stock)_stock;
+                _account.addStockAsset(stock);
+            }
+            else Console.WriteLine($"Do not exist the stock {_stock.Name}");
         }
         public void Deposit(decimal amount,int bankAccount)
         {
@@ -120,9 +128,7 @@ namespace Es22._03.Banca
                 return false;
             }
         }
-            
-
-        
+                   
         #endregion
 
         #region Methods WriteLogs
@@ -133,6 +139,17 @@ namespace Es22._03.Banca
                 Directory.CreateDirectory(path);                
             }
             else File.AppendAllText(Path.Combine(path, fileName), Log);
+        }
+
+        public void visualizeStockAcquired(int bankAccount)
+        {
+            Account account = ListAccounts.Find(account => account.BankAccount.Equals(bankAccount));
+
+            foreach (var stock in account.ListAsset)
+            {
+                if (stock is Stock) Console.WriteLine(stock.Name);
+                else continue;
+            }
         }
         #endregion
     }

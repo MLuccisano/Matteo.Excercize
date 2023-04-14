@@ -17,20 +17,17 @@ namespace Es22._03.Banca.classi
         GNR
     }
 
-
     class StockMarket : FinancialIntermediary
     {
         Stock _stock;
         string _country;
         string _UTC;
-        
-        
+                
         public StockMarket(string name, string country, string city, string UTC) : base(name, country, city)
         {
             _country = country;
             _UTC = UTC;
         }
-
 
         protected override Asset BuyStocks(FinancialIntermediary financialIntermediary, STOCKS stocks, string Name, decimal Amount)
         {
@@ -50,15 +47,12 @@ namespace Es22._03.Banca.classi
             DateTime timezoneCity =DateTime.Parse(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, UTC).ToString());
             DateTime OpenMarket = DateTime.Parse("09:00:00");
             DateTime CloseMarket = DateTime.Parse("17:00:00");
-            // if (timezoneCity.Hour >= 9 && timezoneCity.Minute >= 00 && timezoneCity.Second >= 00 && timezoneCity.Hour <= 17 && timezoneCity.Minute < 30) return true;
-
+            
             int isOpen = timezoneCity.CompareTo(OpenMarket);
             int isClose = timezoneCity.CompareTo(CloseMarket);
 
             if (isOpen > 0 && isClose < 0) return true;
-            else return false;
-    
-            
+            else return false;            
         }
     }
     class Stock : Asset
