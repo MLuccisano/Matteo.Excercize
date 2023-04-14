@@ -118,17 +118,19 @@ namespace Es22._03.Banca
             {
 
                 log = String.Format($"{dateMovimentNow} ,{account.Client.Fullname}, {account.BankAccount}, - {amount} {Currency}, currency: {account.ListAsset[indexAsset].Amount} {Currency}\n");
-                writeLogs(log, @"f:\log\", "log.txt");
+                writeLogs(log, @"c:\log\", "log.txt");
                 return true;
             }
             else
             {
                 log = String.Format($"{dateMovimentNow}, {account.Client.Fullname}, {account.BankAccount}, Withdraw locked. \n");
-                writeLogs(log, @"f:\log\", "log.txt");
+                writeLogs(log, @"C:\log\", "log.txt");
                 return false;
             }
         }
-                   
+            
+
+        
         #endregion
 
         #region Methods WriteLogs

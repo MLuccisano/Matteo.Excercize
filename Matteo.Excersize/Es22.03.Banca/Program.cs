@@ -24,17 +24,20 @@ namespace Es22._03.Banca
            
             
             #region Commercial bank: Intesa Sanpaolo
-            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", BDI, FTSEMib,fiat.EURO);            
-            IntesaSanpaolo.createAccount("Matteo Luccisano", "MOOWEE37Z57A156X", "07/03/1998","it");
+            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", BDI, FTSEMib,fiat.EURO); 
+            
+            IntesaSanpaolo.createAccount("Matteo Luccisano", "MOOWEE37Z57A156X", "07/03/98","it");
             int MLBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "MOOWEE37Z57A156X");
-            IntesaSanpaolo.createAccount("Pietro Ornello", "DD8DJ4DKLYHB954", "03/10/1995", "it");
-            int POBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "DD8DJ4DKLYHB954");
-            IntesaSanpaolo.Deposit(250000M, MLBankAcccount);
-            IntesaSanpaolo.Withdraw(100000M, MLBankAcccount);
-            //IntesaSanpaolo.buyStock(MLBankAcccount, FTSEMib, STOCKS.GNR, "GENERALI", 100M);
+
+            /* IntesaSanpaolo.createAccount("Pietro Ornello", "DD8DJ4DKLYHB954", "03/10/1995", "it");
+             int POBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "DD8DJ4DKLYHB954");
+             IntesaSanpaolo.Deposit(250000M, MLBankAcccount);
+             IntesaSanpaolo.Withdraw(100000M, MLBankAcccount);*/
+            IntesaSanpaolo.buyStock(MLBankAcccount, WallStreet, STOCKS.TSLA, "TESLA", 100M);
+            IntesaSanpaolo.visualizeStockAcquired(MLBankAcccount);
             #endregion
 
-            #region Commercial bank: VTB Bank
+            /*#region Commercial bank: VTB Bank
             CommercialBank VTBBank = new CommercialBank("VTB Bank", "Moscow","Russia", rcb, MOEX, fiat.RUB);
             VTBBank.createAccount("Ivan Fraffesky", "IVFHJ43545JRFIOOED", "23/05/1969", "ru");
             int IFBankAccount = getNumberAccount.getBankAccount(VTBBank, "IVFHJ43545JRFIOOED");
@@ -42,7 +45,7 @@ namespace Es22._03.Banca
             #endregion
 
             /*IntesaSanpaolo.Transfer(1500, VTBBank, MLBankAcccount, IFBankAccount);
-            IntesaSanpaolo.Transfer(1500M, IntesaSanpaolo, MLBankAcccount, POBankAcccount);  */     
+            IntesaSanpaolo.Transfer(1500M, IntesaSanpaolo, MLBankAcccount, POBankAcccount);  */
             Console.ReadLine();
 
             
