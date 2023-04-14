@@ -19,8 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Esercizio Array", "Esercizi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OOP.Exercise.Polimorfismo.002", "Exercise002\OOP.Exercise.Polimorfismo.002.csproj", "{2752FB44-69B5-46F3-992F-4317ABB68555}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TEST.OOP.BankAccount", "TEST.OOP.BankAccount\TEST.OOP.BankAccount.csproj", "{494D7B73-1524-49FC-8E6A-6A256F031C73}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +57,6 @@ Global
 		{2752FB44-69B5-46F3-992F-4317ABB68555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2752FB44-69B5-46F3-992F-4317ABB68555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2752FB44-69B5-46F3-992F-4317ABB68555}.Release|Any CPU.Build.0 = Release|Any CPU
-		{494D7B73-1524-49FC-8E6A-6A256F031C73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{494D7B73-1524-49FC-8E6A-6A256F031C73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{494D7B73-1524-49FC-8E6A-6A256F031C73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{494D7B73-1524-49FC-8E6A-6A256F031C73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

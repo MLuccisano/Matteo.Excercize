@@ -17,24 +17,27 @@ namespace Es22._03.Banca
 
             #region StockMarket
             StockMarket WallStreet = new StockMarket("WallStreet", "USA", "NY", "Eastern Standard Time");
-            StockMarket FTSEMib = new StockMarket("FTSE Mib", "Italian", "Milan", "Central Europe Standard Time");
-            StockMarket Nikkei = new StockMarket("Nikkei", "Japanese", "Tokyo", "Tokyo Standard Time");
+            StockMarket FTSEMib = new StockMarket("FTSE Mib", "Italy", "Milan", "Central Europe Standard Time");
+            StockMarket Nikkei = new StockMarket("Nikkei", "Japan", "Tokyo", "Tokyo Standard Time");
             StockMarket MOEX = new StockMarket("MOEX", "Russia", "Moscow", "Russian Standard Time");
+
+            WallStreet.addStocks(STOCKS.TSLA);
+            FTSEMib.addStocks(STOCKS.GNR);
             #endregion
-           
-            
+
+
             #region Commercial bank: Intesa Sanpaolo
-            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", BDI, FTSEMib,fiat.EURO); 
+            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "ITALY", BDI,FTSEMib,fiat.EURO); 
             
-            IntesaSanpaolo.createAccount("Matteo Luccisano", "MOOWEE37Z57A156X", "07/03/98","it");
+            IntesaSanpaolo.createAccount("Matteo Luccisano", "MOOWEE37Z57A156X", "07/03/1998","it");
             int MLBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "MOOWEE37Z57A156X");
 
             /* IntesaSanpaolo.createAccount("Pietro Ornello", "DD8DJ4DKLYHB954", "03/10/1995", "it");
              int POBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "DD8DJ4DKLYHB954");
              IntesaSanpaolo.Deposit(250000M, MLBankAcccount);
              IntesaSanpaolo.Withdraw(100000M, MLBankAcccount);*/
-            IntesaSanpaolo.buyStock(MLBankAcccount, WallStreet, STOCKS.TSLA, "TESLA", 100M);
-            IntesaSanpaolo.visualizeStockAcquired(MLBankAcccount);
+            IntesaSanpaolo.buyStock(MLBankAcccount, STOCKS.GNR, 100M);
+            //IntesaSanpaolo.visualizeStockAcquired(MLBankAcccount);
             #endregion
 
             /*#region Commercial bank: VTB Bank

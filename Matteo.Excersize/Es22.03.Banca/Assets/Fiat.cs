@@ -85,6 +85,12 @@ namespace Es22._03.Banca.Assets
         internal void Deposit(decimal money)
         {
             Amount += money;
-        }        
+        }
+
+        internal void payment(decimal money)
+        {
+            Amount -= money;
+        } 
+
     }
 }

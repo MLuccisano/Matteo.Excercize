@@ -18,6 +18,7 @@ namespace Es22._03.Banca
         Account _account;
         List<Account> _listAccounts;
         fiat _currency;
+
         public CentralBank CentralBank { get => _centralbank; }
         public fiat Currency { get => _currency; }
         internal List<Account> ListAccounts { get => _listAccounts;}
@@ -75,30 +76,34 @@ namespace Es22._03.Banca
 
             if (_centralbank.flowMoney(this, bankDestination) == true)
             {
-                bool result = this.Withdraw(amount, BankAccountDestination);
-                if (result == true)
-                {
-                    this.Deposit(amount, BankAccountSender);
-                    Console.WriteLine("Trasfert successful");
-                } 
-                else Console.WriteLine("Amount not transfered");
+                Account account = ListAccounts.Find(account => account.BankAccount.Equals(BankAccountSender));
+                account.payment(amount);
+                this.Deposit(amount, BankAccountDestination);
+                Console.WriteLine("Trasfert successful");
             }
             else Console.WriteLine("Amount not transfered");
-        }     
+        }
 
-        public void buyStock(int bankAccount, FinancialIntermediary financialIntermediary, STOCKS stocks, string name, decimal amount)
+        public void buyStock(int bankAccount, STOCKS stocks, decimal amount)
         {
-            /*Withdraw(amount, bankAccount);
-            Asset stock = base.BuyStocks(financialIntermediary, stocks, name, amount);
-            _account.ListAsset.Add(stock);*/
-            Withdraw(amount, bankAccount);
-            Asset _stock = base.BuyStocks(financialIntermediary, stocks, name, amount);
-            if (_stock != null)
+            if (_stockMarket.country.Equals(this.country))
             {
-                Stock stock = (Stock)_stock;
-                _account.addStockAsset(stock);
+                try
+                {
+                    Account account = ListAccounts.Find(account => account.BankAccount.Equals(bankAccount));
+                    var indexStocks = _stockMarket.ListStocks.FindIndex(listStock => listStock.Equals(stocks));                   
+                    Asset _stock = base.BuyStocks(_stockMarket, _stockMarket.ListStocks[indexStocks], amount);
+                    if (_stock != null)
+                    {
+                        account.payment(amount);
+                        Stock stock = (Stock)_stock;
+                        _account.addStockAsset(stock);
+                    }
+                }
+                catch { Console.WriteLine($"the stock {stocks} doesn't exist at the stockmarket {_stockMarket.name}"); }
             }
-            else Console.WriteLine($"Do not exist the stock {_stock.Name}");
+            else Console.WriteLine($"You cannot buy any stocks from {_stockMarket.name}.");
+
         }
         public void Deposit(decimal amount,int bankAccount)
         {

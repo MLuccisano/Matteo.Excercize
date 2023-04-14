@@ -16,13 +16,14 @@ namespace Es22._03.Banca.classi
         public FinancialIntermediary(string Name, string Country, string City) 
         {
             name = Name;
-            country = Country;
+            country = Country.ToLower();
             city = City;
+            
         }
 
-        protected virtual Asset BuyStocks(FinancialIntermediary financialIntermediary, STOCKS stocks, string name, decimal amount)
+        protected virtual Asset BuyStocks(FinancialIntermediary financialIntermediary, STOCKS stocks, decimal amount)
         {
-            return financialIntermediary.BuyStocks(financialIntermediary, stocks, name, amount);
+            return financialIntermediary.BuyStocks(financialIntermediary, stocks, amount);
         }
     }
 

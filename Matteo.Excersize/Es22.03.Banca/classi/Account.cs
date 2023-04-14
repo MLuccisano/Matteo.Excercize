@@ -90,17 +90,26 @@ namespace Es22._03.Banca
 
         internal void Deposit(decimal amount)
         {
-            Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Currency.ToString()));
-            Fiat fiatAsset = (Fiat)asset;
+            Fiat fiatAsset = searchFiatAsset();
             fiatAsset.Deposit(amount);                   
         }
         internal bool Withdraw(decimal amount, string dateMovimentNow)
         {
-            Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Currency.ToString()));
-            Fiat fiatAsset = (Fiat)asset;
+            Fiat fiatAsset = searchFiatAsset();
             return fiatAsset.Withdraw(amount);
         }
+        internal void payment(decimal amount)
+        {
+            Fiat fiatAsset = searchFiatAsset();
+            fiatAsset.payment(amount);
+        }
 
+        private Fiat searchFiatAsset()
+        {
+            Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Currency.ToString()));
+            Fiat fiatAsset = (Fiat)asset;
+            return fiatAsset;
+        }
         #endregion
     }
 
