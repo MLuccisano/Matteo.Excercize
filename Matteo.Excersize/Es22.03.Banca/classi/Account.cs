@@ -63,7 +63,12 @@ namespace Es22._03.Banca
         }
         #endregion
 
-        #region Method for Account: AddAsset, newBankAccount, CheckClient, Deposit, withdraw
+        internal void visualizeStockAcquire (StockMarket stockMarket)
+        {
+            stockMarket.visualizeStockAcquired(this);
+        }
+
+        #region Method for Account: AddAsset, newBankAccount, CheckClient, Deposit, withdraw, payment, searchFiatAsset
         private void addFiatAsset(fiat fiat)
         {
             Fiat fiatAsset = new Fiat(fiat, fiat.ToString(), 0M);
@@ -71,7 +76,7 @@ namespace Es22._03.Banca
             listAsset.Add(fiatAsset);
         }
 
-        internal void addStockAsset(Stock stock)
+        internal void addStockAsset(Asset stock)
         {
             listAsset.Add(stock);           
         }
@@ -88,20 +93,20 @@ namespace Es22._03.Banca
             return result;
         }
 
-        internal void Deposit(decimal amount)
+        internal bool Deposit(decimal amount)
         {
             Fiat fiatAsset = searchFiatAsset();
-            fiatAsset.Deposit(amount);                   
+            return fiatAsset.Deposit(amount);                   
         }
         internal bool Withdraw(decimal amount, string dateMovimentNow)
         {
             Fiat fiatAsset = searchFiatAsset();
             return fiatAsset.Withdraw(amount);
         }
-        internal void payment(decimal amount)
+        internal bool payment(decimal amount)
         {
             Fiat fiatAsset = searchFiatAsset();
-            fiatAsset.payment(amount);
+            return fiatAsset.payment(amount);
         }
 
         private Fiat searchFiatAsset()

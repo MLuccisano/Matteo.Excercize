@@ -39,11 +39,19 @@ namespace Es22._03.Banca.classi
                 Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is close");
             }
             else
-            {
-                
+            {                
                 _stock = new Stock(stocks, stocks.ToString(), Amount);
             } 
             return _stock;
+        }
+
+        internal void visualizeStockAcquired(Account account)
+        {
+            foreach (Asset stock in account.ListAsset)
+            {
+                if (stock is Stock) Console.WriteLine(stock.Name);
+                else continue;
+            }
         }
 
         public void addStocks(STOCKS stock)
@@ -63,15 +71,16 @@ namespace Es22._03.Banca.classi
             if (isOpen > 0 && isClose < 0) return true;
             else return false;            
         }
-    }
-    class Stock : Asset
-    {
-        STOCKS _stocks;
-
-        public Stock(STOCKS stocks, string Name, decimal amount) : base(Name, amount)
+        class Stock : Asset
         {
-            _stocks = stocks;
+            STOCKS _stocks;
+
+            public Stock(STOCKS stocks, string Name, decimal amount) : base(Name, amount)
+            {
+                _stocks = stocks;
+            }
         }
     }
+
 
 }

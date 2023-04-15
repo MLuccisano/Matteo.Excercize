@@ -10,11 +10,10 @@ namespace Es22._03.Banca
         {
             #region CentralBank
             SwiftCentralBank BDI = new SwiftCentralBank("Banca d'Italia", "Roma", "Italia");
-            SwiftCentralBank frs = new SwiftCentralBank("Federal Reserve System", "Washington", "USA");
+            SwiftCentralBank FRS = new SwiftCentralBank("Federal Reserve System", "Washington", "USA");
             CentralBank rcb = new CentralBank("Russian Central Bank", "Moscow", "Russia");
             #endregion
             
-
             #region StockMarket
             StockMarket WallStreet = new StockMarket("WallStreet", "USA", "NY", "Eastern Standard Time");
             StockMarket FTSEMib = new StockMarket("FTSE Mib", "Italy", "Milan", "Central Europe Standard Time");
@@ -27,28 +26,26 @@ namespace Es22._03.Banca
 
 
             #region Commercial bank: Intesa Sanpaolo
-            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "ITALY", BDI,FTSEMib,fiat.EURO); 
+            CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "ITALY", BDI,FTSEMib,fiat.EUR);
+            CommercialBank AE = new CommercialBank("Amnerican Express", "NY", "USA", FRS, WallStreet, fiat.USD);
             
             IntesaSanpaolo.createAccount("Matteo Luccisano", "MOOWEE37Z57A156X", "07/03/1998","it");
             int MLBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "MOOWEE37Z57A156X");
 
-            /* IntesaSanpaolo.createAccount("Pietro Ornello", "DD8DJ4DKLYHB954", "03/10/1995", "it");
-             int POBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "DD8DJ4DKLYHB954");
-             IntesaSanpaolo.Deposit(250000M, MLBankAcccount);
-             IntesaSanpaolo.Withdraw(100000M, MLBankAcccount);*/
-            IntesaSanpaolo.buyStock(MLBankAcccount, STOCKS.GNR, 100M);
+            AE.createAccount("John Doe", "JNDKD89485JNDIU8", "09/11/2001", "us");
+            int JDBankAccount = getNumberAccount.getBankAccount(AE, "JNDKD89485JNDIU8");
+
+            
+
+            IntesaSanpaolo.createAccount("Pietro Ornello", "DD8DJ4DKLYHB954", "03/10/1995", "it");
+            int POBankAcccount = getNumberAccount.getBankAccount(IntesaSanpaolo, "DD8DJ4DKLYHB954");
+
+            IntesaSanpaolo.Deposit(250000M, MLBankAcccount);
+            IntesaSanpaolo.Withdraw(25000M, MLBankAcccount);
+            IntesaSanpaolo.Transfer(10M, AE, MLBankAcccount, JDBankAccount);
+            //IntesaSanpaolo.buyStock(MLBankAcccount, STOCKS.GNR, 100M);
             //IntesaSanpaolo.visualizeStockAcquired(MLBankAcccount);
             #endregion
-
-            /*#region Commercial bank: VTB Bank
-            CommercialBank VTBBank = new CommercialBank("VTB Bank", "Moscow","Russia", rcb, MOEX, fiat.RUB);
-            VTBBank.createAccount("Ivan Fraffesky", "IVFHJ43545JRFIOOED", "23/05/1969", "ru");
-            int IFBankAccount = getNumberAccount.getBankAccount(VTBBank, "IVFHJ43545JRFIOOED");
-            VTBBank.Deposit(50M, IFBankAccount);            
-            #endregion
-
-            /*IntesaSanpaolo.Transfer(1500, VTBBank, MLBankAcccount, IFBankAccount);
-            IntesaSanpaolo.Transfer(1500M, IntesaSanpaolo, MLBankAcccount, POBankAcccount);  */
             Console.ReadLine();
 
             
