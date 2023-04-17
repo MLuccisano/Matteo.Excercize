@@ -11,13 +11,15 @@ namespace Es22._03.Banca
 {
     class Account
     {
+        
         CommercialBank _commercialBank;
         Client _Client;
         int _bankAccount;
         List<Asset> listAsset;
 
         #region properties
-        public Client Client {get => _Client; } 
+        public string ClientCF { get => _Client.Cf; }
+        public string ClientFullname { get => _Client.Fullname; }
         public int BankAccount { get => _bankAccount; }
 
         public List<Asset> ListAsset { get => listAsset; }
@@ -44,7 +46,7 @@ namespace Es22._03.Banca
                     }
                     else
                     {
-                        Client clientExist = _commercialBank.ListAccounts[index].Client;
+                        Client clientExist = _commercialBank.ListAccounts[index]._Client;
                         _Client = clientExist;
                         _bankAccount = newBankAccount();
                         clientExist.addBankAccounts(this);
@@ -77,8 +79,23 @@ namespace Es22._03.Banca
         }
 
         internal void addStockAsset(Asset stock)
-        {
+        {            
             listAsset.Add(stock);           
+        }
+
+        internal void addCryptoAsset(Asset crypto)
+        {
+
+            listAsset.Add(crypto);
+        }
+
+        private void removeStockAsset(Asset stock)
+        {
+            listAsset.Remove(stock);    
+        }
+        internal void removeCryptoAsset(Asset crypto)
+        {
+            listAsset.Remove(crypto);
         }
 
         private int newBankAccount()
@@ -89,16 +106,16 @@ namespace Es22._03.Banca
 
         private int checkClient(string CF)
         {
-            var result = _commercialBank.ListAccounts.FindIndex(data => data.Client.Cf.Equals(CF));
+            var result = _commercialBank.ListAccounts.FindIndex(data => data.ClientCF.Equals(CF));
             return result;
         }
 
-        internal bool Deposit(decimal amount)
+        internal bool DepositFiat(decimal amount)
         {
             Fiat fiatAsset = searchFiatAsset();
             return fiatAsset.Deposit(amount);                   
         }
-        internal bool Withdraw(decimal amount, string dateMovimentNow)
+        internal bool WithdrawFiat(decimal amount, string dateMovimentNow)
         {
             Fiat fiatAsset = searchFiatAsset();
             return fiatAsset.Withdraw(amount);
@@ -109,39 +126,58 @@ namespace Es22._03.Banca
             return fiatAsset.payment(amount);
         }
 
+        internal int cryptoAsset(CRYPTO crypto)
+        {
+            var indexCryptoAsset = listAsset.FindIndex(asset => asset.Name.Equals(crypto.ToString()));
+            return indexCryptoAsset;
+        }
+
         private Fiat searchFiatAsset()
         {
             Asset asset = listAsset.Find(asset => asset.Name.Equals(_commercialBank.Currency.ToString()));
             Fiat fiatAsset = (Fiat)asset;
             return fiatAsset;
         }
+
+        internal Asset searchStockAsset(STOCKS stocks)
+        {
+            var indexStock = ListAsset.Find(asset => asset.Name.Equals(stocks.ToString()));
+            removeStockAsset(indexStock);
+            return indexStock;
+        }
         #endregion
+
+        #region Class Client   
+        class Client
+        {
+            string _fullname;
+            string _cf;
+            List<Account> _accounts;
+
+            public string Fullname { get => _fullname; set => _fullname = value; }
+            public string Cf { get => _cf; set => _cf = value; }
+
+            internal List<Account> Accounts { get => _accounts; set => _accounts = value; }
+            public Client(string FullName, string CF, Account account)
+            {
+                this.Fullname = FullName;
+                _cf = CF;
+                Accounts = new List<Account>();
+                addBankAccounts(account);
+            }
+
+            public void addBankAccounts(Account account)
+            {
+                Accounts.Add(account);
+            }
+        }
+        #endregion
+
     }
 
-    #region Class Client   
-    class Client
-    {
-        string _fullname;
-        string _cf;
-        List<Account> _accounts;
-        
-        public string Fullname { get => _fullname; set => _fullname = value; }
-        public string Cf { get => _cf; set => _cf = value; }
-        
-        internal List<Account> Accounts { get => _accounts; set => _accounts = value; }
-        public Client(string FullName, string CF, Account account)
-        {
-            this.Fullname = FullName;
-            this.Cf = CF;
-            Accounts = new List<Account>();
-            addBankAccounts(account);
-        }
 
-        public void addBankAccounts(Account account)
-        {
-            Accounts.Add(account);            
-        }
-    }
-    #endregion
+
+
+
 
 }

@@ -25,6 +25,21 @@ namespace Es22._03.Banca.classi
         {
             return financialIntermediary.BuyStocks(financialIntermediary, stocks, amount);
         }
+
+        protected virtual Asset BuyCrypto(FinancialIntermediary financialIntermediary, CRYPTO cryptos)
+        {
+            return financialIntermediary.BuyCrypto(financialIntermediary, cryptos);
+        }
+
+        protected virtual void SellStocks(FinancialIntermediary financialIntermediary, Asset stocks)
+        {
+            financialIntermediary.SellStocks(financialIntermediary, stocks);
+        }
+
+        protected virtual decimal SellCrypto(FinancialIntermediary financialIntermediary, CRYPTO cryptos, decimal amount)
+        {
+            return financialIntermediary.SellCrypto(financialIntermediary, cryptos, amount);   
+        }
     }
 
 }

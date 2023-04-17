@@ -16,8 +16,8 @@ namespace Es22._03.Banca.Assets
 
         public Asset(string Name, decimal Amount)
         {
-            this.Name = Name;
-            this.Amount = Amount;
+            _name = Name;
+            _amount = Amount;
         }
     }
 }

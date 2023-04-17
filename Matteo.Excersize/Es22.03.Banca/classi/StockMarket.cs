@@ -34,16 +34,10 @@ namespace Es22._03.Banca.classi
 
         protected override Asset BuyStocks(FinancialIntermediary financialIntermediary, STOCKS stocks, decimal Amount)
         {
-            if (CheckOpenStockMarket(_UTC) == false)
-            {
-                Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is close");
-            }
-            else
-            {                
-                _stock = new Stock(stocks, stocks.ToString(), Amount);
-            } 
-            return _stock;
-        }
+            if (CheckOpenStockMarket(_UTC) == false) Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is close");
+            else _stock = new Stock(stocks, stocks.ToString(), Amount);
+           return _stock;
+        }     
 
         internal void visualizeStockAcquired(Account account)
         {
@@ -54,12 +48,29 @@ namespace Es22._03.Banca.classi
             }
         }
 
+        protected override void SellStocks(FinancialIntermediary financialIntermediary, Asset stock)
+        {
+            if (CheckOpenStockMarket(_UTC) == false) Console.WriteLine($"The Stockmarket of {financialIntermediary.name} from {financialIntermediary.city} is close");
+            else
+            {
+                try
+                {
+                    Stock Stock = (Stock)stock;
+                    stock = null;
+                }
+                catch
+                {
+                    Console.WriteLine($"{stock.Name} is not a stock");
+                }
+            }                      
+        }
+
         public void addStocks(STOCKS stock)
         {
             _listStocks.Add(stock);
         }
 
-        static bool CheckOpenStockMarket(string UTC)
+        internal bool CheckOpenStockMarket(string UTC)
         {            
             DateTime timezoneCity =DateTime.Parse(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, UTC).ToString());
             DateTime OpenMarket = DateTime.Parse("09:00:00");

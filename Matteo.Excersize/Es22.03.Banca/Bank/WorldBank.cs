@@ -14,8 +14,8 @@ namespace Es22._03.Banca
             if (bankSender.CentralBank is IswiftSystem && bankDestination.CentralBank is IswiftSystem) return true;
             else 
             {
-                if (bankSender.CentralBank is not IswiftSystem) Console.WriteLine($"Transfer locked by the World Bank swiftsystem. The Bank {bankSender.Name} from {bankSender.Country} is under sanction");
-                else Console.WriteLine($"Transfer locked by the World Bank swiftsystem. The Bank {bankDestination.Name} from {bankDestination.Country} is under sanction");
+                if (bankSender.CentralBank is not IswiftSystem) Console.WriteLine($"Transfer locked from {bankDestination.Name} by the World Bank swiftsystem. The Bank {bankSender.Name} from {bankSender.Country} is under sanction");
+                else Console.WriteLine($"Transfer locked From {bankSender.Name} by the World Bank swiftsystem. The Bank {bankDestination.Name} from {bankDestination.Country} is under sanction");
                 return false;
             }
             

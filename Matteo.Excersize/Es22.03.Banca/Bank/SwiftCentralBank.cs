@@ -13,7 +13,6 @@ namespace Es22._03.Banca
         }
         public void applySwift()
         {
-            Console.WriteLine("This central bank has got a swift system");
         }
     }
 }

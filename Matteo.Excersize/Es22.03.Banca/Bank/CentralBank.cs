@@ -11,7 +11,7 @@ namespace Es22._03.Banca
     {
         CommercialBank _commercialBank;
         List<CommercialBank> _commercialBanks;
-        public CentralBank(string Name,  string City, string Country) : base(Name, City ,Country)
+        public CentralBank(string Name, string City, string Country) : base(Name, City, Country)
         {
             _commercialBanks = new List<CommercialBank>();
         }
@@ -41,54 +41,6 @@ namespace Es22._03.Banca
             }
             else return WorldBank.checkTransfer((CommercialBank)bankSender, (CommercialBank)bankDestination);
         }
-
-
-        #region CurrencyConverter
-        internal protected decimal exchangeRate(fiat currencySender, fiat currencyDestination)
-        {
-            decimal exchangeRate = 0M;
-            if (currencySender == currencyDestination) exchangeRate = 1;
-            else
-            {
-                switch (currencySender)
-                {
-                    case fiat.EUR:
-                        switch (currencyDestination)
-                        {
-                            case fiat.RUB:
-                                exchangeRate = 90.52M;
-                                break;
-                            case fiat.USD:
-                                exchangeRate = 1.09M;
-                                break;
-                        }
-                        break;
-                    case fiat.RUB:
-                        switch (currencyDestination)
-                        {
-                            case fiat.EUR:
-                                exchangeRate = 0.01M;
-                                break;
-                            case fiat.USD:
-                                exchangeRate = 0.02M;
-                                break;
-                        }
-                        break;
-                    case fiat.USD:
-                        switch (currencyDestination)
-                        {
-                            case fiat.RUB:
-                                exchangeRate = 82.27M;
-                                break;
-                            case fiat.EUR:
-                                exchangeRate = 1.90M;
-                                break;
-                        }
-                        break;
-                }
-            }            
-            return exchangeRate;
-        }
-        #endregion
     }
 }
+

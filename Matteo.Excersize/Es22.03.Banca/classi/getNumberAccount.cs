@@ -10,7 +10,7 @@ namespace Es22._03.Banca.classi
     {
         public static int getBankAccount(CommercialBank commercialBank, string cf)
         {
-            var result = commercialBank.ListAccounts.FindIndex(lista => lista.Client.Cf.Equals(cf));
+            var result = commercialBank.ListAccounts.FindIndex(lista => lista.ClientCF.Equals(cf));
             return commercialBank.ListAccounts[result].BankAccount;
         }
     }
