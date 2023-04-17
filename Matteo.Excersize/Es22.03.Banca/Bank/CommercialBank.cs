@@ -165,7 +165,7 @@ namespace Es22._03.Banca
                     }
                     else
                     {
-                        log = String.Format($"{dateMovimentNow}, {Name}, {account.ClientFullname}, {account.BankAccount}, Stock purchase blocked: Not enough Money . \n");
+                        log = String.Format($"{dateMovimentNow}, {Name}, {account.ClientFullname}, {account.BankAccount}, Stock purchase blocked: Not enough Money. \n");
                         LogSystem.writeLogs(log, path, fileName);
                     }
                 }
@@ -277,7 +277,7 @@ namespace Es22._03.Banca
                 DepositFIAT(exchangeCryptoToFiat, bankAccount);
                 log = String.Format($"{dateMovimentNow}, {Name}, {account.ClientFullname}, {account.BankAccount}, Crypto Selled: {amount} {cryptos} ({exchangeCryptoToFiat} {Currency}) from cryptoExchange {_cryptoExhange.name} ({_cryptoExhange.country}), Bilance: {account.ListAsset[indexAsset].Amount.ToString("F")} {Currency}\n");
                 LogSystem.writeLogs(log, path, fileName);
-                Console.WriteLine($"{account.ClientFullname} has sold the crypto {amount} {cryptos} ({exchangeCryptoToFiat} {Currency})");
+                Console.WriteLine($"{account.ClientFullname} has sold the crypto {amount} {cryptos} ({exchangeCryptoToFiat.ToString("F")} {Currency})");
             }
         }
 
@@ -296,7 +296,7 @@ namespace Es22._03.Banca
             }
             else
             {
-                log = String.Format($"{dateMovimentNow}, {Name}, {account.ClientFullname}, {account.BankAccount} Stock Sold failed: StockMarket is close \n");
+                log = String.Format($"{dateMovimentNow}, {Name}, {account.ClientFullname}, {account.BankAccount} Stock Sold failed: You haven't got \n");
                 LogSystem.writeLogs(log, path, fileName);
             }
 

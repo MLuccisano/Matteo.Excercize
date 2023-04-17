@@ -70,7 +70,7 @@ namespace Es22._03.Banca.classi
             _listStocks.Add(stock);
         }
 
-        internal bool CheckOpenStockMarket(string UTC)
+        private bool CheckOpenStockMarket(string UTC)
         {            
             DateTime timezoneCity =DateTime.Parse(TimeZoneInfo.ConvertTimeBySystemTimeZoneId(DateTime.Now, TimeZoneInfo.Local.Id, UTC).ToString());
             DateTime OpenMarket = DateTime.Parse("09:00:00");
