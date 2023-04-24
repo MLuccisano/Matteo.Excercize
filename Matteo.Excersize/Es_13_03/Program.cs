@@ -13,8 +13,8 @@ namespace Es_13_03
             
 
             Regione regione = new Regione("Piemonte", italia);
-            Provincia provincia = new Provincia("Torino", regione);
-            Comune comune = new Comune("Nichelino", provincia);
+            //Provincia provincia = new Provincia("Torino", regione);
+            Comune comune = new Comune("Nichelino");
             Abitanti abitante = new Abitanti("Matteo Luccisano", comune);
 
             unioneEuropea UE = new unioneEuropea("Unione Europea", "Bruxelles", "Ursula Von den Leyen", 32000, "Euro");
