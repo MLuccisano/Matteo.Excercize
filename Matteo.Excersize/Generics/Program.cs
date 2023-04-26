@@ -327,7 +327,7 @@ namespace Generics
          }
         #endregion
 
-        #region metodi per il secondo Esercizio (delegate)
+        #region metodi per il secondo Esercizio (Tkey)
         public static List<T> ListSort<T, Tkey>(List<T> dataSource, Func<T, Tkey> property) where T : new()
         {
             var list = dataSource.OrderBy(property).ToList();
@@ -343,7 +343,7 @@ namespace Generics
         }
         #endregion
 
-        #region metodi per il secondo Esercizio (non delegate)
+        #region metodi per il secondo Esercizio (non Tkey)
         public static List<T> ListSort2<T>(List<T> list, string property = null)
         {
             if (property == null)
