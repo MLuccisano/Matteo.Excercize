@@ -12,24 +12,27 @@ namespace Generics
     {
         static void Main(string[] args)
         {
+            Person CarloCracco = new Person() { Name = "Carlo", Surname = "Cracco", cf = "90C4C432DDJ", age = 58 };
+            Person BrunoBarbieri = new Person() { Name = "Bruno", Surname = "Barbieri", cf = "SASA232K39CM", age = 61 };
+            Person AntonioCannavacciuolo = new Person() { Name = "Antonio", Surname = "Cannavacciuolo", cf = "KM08MGFK4389", age = 48 };
+            List<Person> listPerson = new List<Person>()
+            {
+                  CarloCracco,
+                  BrunoBarbieri,
+                  AntonioCannavacciuolo
+            };
+
+            List<int> listInteger = new List<int>() { 4, 2, 1, 3 };
+
+
             #region primo esercizio
             /*DataStore<Person> datastore = new DataStore<Person>();
            datastore.printProperties(new Person());*/
 
             /* #region object Person
-             Person CarloCracco = new Person()  {Name = "Carlo", Surname = "Cracco", cf = "90C4C432DDJ", age = 58};
-             Person BrunoBarbieri = new Person() { Name = "Bruno", Surname = "Barbieri", cf = "SASA232K39CM", age = 61};
-             Person AntonioCannavacciuolo = new Person() { Name = "Antonio", Surname = "Cannavacciuolo", cf = "KM08MGFK4389", age = 48};
              #endregion
 
              azienda aziendaQ = new azienda() { iva = "Q" };
-
-             List<Person> person = new List<Person>()
-             {
-                 CarloCracco,
-                 BrunoBarbieri,
-                 AntonioCannavacciuolo,
-             };
 
              string filepath = @"f:\person.csv";
              Console.WriteLine($"Elimino il file {filepath}\n");
@@ -75,55 +78,102 @@ namespace Generics
              #endregion*/
             #endregion
 
-            #region secondo Esercizio            
+            #region secondo Esercizio con Tkey          
 
-            #region Per oggetti
-            Person CarloCracco = new Person() { Name = "Carlo", Surname = "Cracco", cf = "90C4C432DDJ", age = 58 };
-            Person BrunoBarbieri = new Person() { Name = "Bruno", Surname = "Barbieri", cf = "SASA232K39CM", age = 61 };
-            Person AntonioCannavacciuolo = new Person() { Name = "Antonio", Surname = "Cannavacciuolo", cf = "KM08MGFK4389", age = 48 };
-            List<Person> listPerson = new List<Person>()
+           
+
+
+            /* Console.ForegroundColor = ConsoleColor.Green;
+             Console.WriteLine("La lista in ordine per Nome in crescente\n");
+             Console.ResetColor();
+
+             var listSorted = ListSort(listPerson, p=>p.Name);
+             for (int i = 0; i < listSorted.Count; i++)
              {
-                 CarloCracco,
-                 BrunoBarbieri,
-                 AntonioCannavacciuolo,
-             };
+                 Console.WriteLine($" {listSorted[i].Name} {listSorted[i].Surname} {listSorted[i].age} {listSorted[i].cf}");    
+             }
+
+             Console.WriteLine("------------------------------------------------------------------------------\n");
+
+             Console.ForegroundColor = ConsoleColor.Green;
+             Console.WriteLine("La lista in ordine per Nome in decrescente\n");
+             Console.ResetColor();
+
+             var listSortedDescending = ListSortDescending(listPerson, p => p.Name);
+             for (int i = 0; i < listPerson.Count; i++)
+             {
+                 Console.WriteLine($" {listSortedDescending[i].Name} {listSortedDescending[i].Surname} {listSortedDescending[i].age} {listSortedDescending[i].cf}");
+             }
+             #endregion
 
 
-            var listSorted = ListSort(listPerson, p=>p.Name);
-            for (int i = 0; i < listSorted.Count; i++)
-            {
-                Console.WriteLine($" {listSorted[i].Name} {listSorted[i].Surname} {listSorted[i].age} {listSorted[i].cf}");    
-            }
+             Console.WriteLine("---------------------------------------------------------------------\n");
 
-            Console.WriteLine("------------------------------------------------------------------------------\n");
+             #region Per Integer
+             Console.ForegroundColor = ConsoleColor.Green;
+             Console.WriteLine("La lista di numeri in ordine crescente\n");
+             Console.ResetColor();
+             List<int> listInteger = new List<int>() { 3, 2, 1, 4};
 
-            var listSortedDescending = ListSortDescending(listPerson, p => p.Name);
-            for (int i = 0; i < listPerson.Count; i++)
-            {
-                Console.WriteLine($" {listSortedDescending[i].Name} {listSortedDescending[i].Surname} {listSortedDescending[i].age} {listSortedDescending[i].cf}");
-            }
+             var listSortedInt = ListSort(listInteger, p => p);
+             for (int i = 0; i < listInteger.Count; i++)
+             {
+                 Console.WriteLine($"{listSortedInt[i]}");
+             }
+
+             Console.WriteLine("---------------------------------------------------------------------\n");
+
+             Console.ForegroundColor = ConsoleColor.Green;
+             Console.WriteLine("La lista di numeri in ordine decrescente\n");
+             Console.ResetColor();
+
+             var listSortedDescendingInt = ListSortDescending(listInteger, p => p);
+             for (int i = 0; i < listInteger.Count; i++)
+             {
+                 Console.WriteLine($"{listSortedDescendingInt[i]}");
+             }*/
             #endregion
 
-            Console.WriteLine("---------------------------------------------------------------------\n");
+            #region secondo esercizio senza Tkey
 
-            #region Per Integer
-            List<int> listInteger = new List<int>() { 3, 2, 1, 4};
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("La lista dei nomi in ordine crescente per età\n");
+            Console.ResetColor();
 
-            var listSortedInt = ListSort(listInteger, p => p);
-            for (int i = 0; i < listInteger.Count; i++)
-            {
-                Console.WriteLine($"{listSortedInt[i]}");
-            }
+            var listPersonCrescente = ListSort2(listPerson, "age");
+            foreach (var person in listPersonCrescente) Console.WriteLine($"{person.Name} {person.Surname} {person.age} {person.cf}");
 
-            Console.WriteLine("---------------------------------------------------------------------\n");
+            Console.WriteLine("--------------------------------------------------\n");
 
-            var listSortedDescendingInt = ListSortDescending(listInteger, p => p);
-            for (int i = 0; i < listInteger.Count; i++)
-            {
-                Console.WriteLine($"{listSortedDescendingInt[i]}");
-            }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("La lista dei nomi in ordine decrescente per Cognome\n");
+            Console.ResetColor();
+
+            var listPersonDecrescente= ListSortDiscending2(listPerson, "Surname");
+            foreach (var person in listPersonDecrescente) Console.WriteLine($"{person.Name} {person.Surname} {person.age} {person.cf}");
+
+            Console.WriteLine("--------------------------------------------------\n");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("La lista di numeri in ordine crescente\n");
+            Console.ResetColor();
+
+            var listNumberCrescente = ListSort2(listInteger);
+
+            for (int i = 0; i < listInteger.Count; i++) Console.WriteLine(listNumberCrescente[i]);
+
+            Console.WriteLine("--------------------------------------------------\n");
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("La lista di numeri in ordine decrescente\n");
+            Console.ResetColor();
+
+            var listNumberDecrescente = ListSortDiscending2(listInteger);
+
+            for (int i = 0; i < listInteger.Count; i++) Console.WriteLine(listNumberDecrescente[i]);
+
             #endregion
-            #endregion
+
             Console.Read();
         }
 
@@ -277,7 +327,7 @@ namespace Generics
          }
         #endregion
 
-        #region metodo e classe Person per il secondo Esercizio
+        #region metodi per il secondo Esercizio (delegate)
         public static List<T> ListSort<T, Tkey>(List<T> dataSource, Func<T, Tkey> property) where T : new()
         {
             var list = dataSource.OrderBy(property).ToList();
@@ -290,6 +340,39 @@ namespace Generics
             var list = dataSource.OrderByDescending(property).ToList();
 
             return list;
+        }
+        #endregion
+
+        #region metodi per il secondo Esercizio (non delegate)
+        public static List<T> ListSort2<T>(List<T> list, string property = null)
+        {
+            if (property == null)
+            {
+                var ListSort = list.OrderBy(p => p).ToList();
+
+                return ListSort;
+            }
+            else
+            {
+                var ListSort = list.OrderBy(x => x.GetType().GetProperty(property).GetValue(x)).ToList();
+                return ListSort;
+            }
+
+        }
+        public static List<T> ListSortDiscending2<T>(List<T> list, string property = null)
+        {
+            if (property == null)
+            {
+                var ListSortDescending = list.OrderByDescending(p => p).ToList();
+
+                return ListSortDescending;
+            }
+            else
+            {
+                var ListSortDescending = list.OrderByDescending(x => x.GetType().GetProperty(property).GetValue(x)).ToList();
+                return ListSortDescending;
+            }
+
         }
         #endregion
     }
