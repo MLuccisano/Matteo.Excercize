@@ -14,12 +14,28 @@ namespace EsercizioDelegate
             
             sumNumber sum = (num1, num2) => num1 + num2;
 
-            Func<sumNumber,int,int, string> operazioneSomma = (somma, num1, num2) =>
+            Func<sumNumber,int,int, int> operazioneSomma = (somma, num1, num2) =>
             {
-                return string.Format($"La somma è di: {somma(num1, num2)}");
+                int result = somma(num1, num2);
+                return result;
             };
 
-            Console.WriteLine(operazioneSomma(sum, n1, n2));
+            int somma = operazioneSomma(sum, n1, n2);
+
+            Predicate<int> result = delegate (int somma)
+            {
+                 return somma > 100 ? true : false;               
+            };
+
+            bool checkisMajor = result(somma);
+
+            Action<bool> output = (bool checkisMajor) =>
+            {
+                if (checkisMajor) Console.WriteLine("ok!");
+            };
+
+            output(checkisMajor);
+
         }
         #region costruttore numeri
         class numbers
