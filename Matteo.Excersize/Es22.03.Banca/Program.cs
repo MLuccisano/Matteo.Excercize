@@ -43,7 +43,7 @@ namespace Es22._03.Banca
             CommercialBank IntesaSanpaolo = new CommercialBank("Intesa Sanpaolo", "Turin", "Italy", BDI,FTSEMib,binance,fiat.EUR);
             CommercialBank AE = new CommercialBank("American Express", "NY", "USA", FRS, WallStreet, binance, fiat.USD);
             CommercialBank VTBBank = new CommercialBank("VTB Bank", "Moscow", "Russia", rcb, MOEX, binance, fiat.RUB);
-
+            
             #endregion
 
             #region CreateAccount

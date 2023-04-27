@@ -37,7 +37,11 @@ namespace Es22._03.Banca
             _listAccounts = new List<Account>();
             _currency = currency;
             _cryptoExhange = cryptoExhange;
+            _centralbank.AddCommercialBank(this);
+            
         }
+
+        
 
         #region Create, remove and Visualize Account
 
@@ -45,7 +49,7 @@ namespace Es22._03.Banca
         {           
             _account = new Account(FullName, CF, dateofbirth, this, culture);
             _listAccounts.Add(_account);
-            
+            TextFileGenerator.Savetofile(_listAccounts, $"f:\\account{Name}.csv");
         }                  
         public void removeAccount(Account account)
         {

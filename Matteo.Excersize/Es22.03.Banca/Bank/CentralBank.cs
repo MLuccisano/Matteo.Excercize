@@ -1,4 +1,5 @@
 ﻿using Es22._03.Banca.Assets;
+using Es22._03.Banca.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,12 +16,12 @@ namespace Es22._03.Banca
         {
             _commercialBanks = new List<CommercialBank>();
         }
-        public CommercialBank commercialBank { get { return _commercialBank; } set { _commercialBank = value; } }
+        public CommercialBank commercialBank { get { return _commercialBank; } }
         public List<CommercialBank> CommercialBanks { get => _commercialBanks; }
-        public void AddCommercialBank(CommercialBank commercialBank)
+        internal void AddCommercialBank(CommercialBank commercialBank)
         {
             _commercialBanks.Add(commercialBank);
-
+            TextFileGenerator.Savetofile(_commercialBanks, $"f:\\{Name}.csv");
         }
         /*public void visualizeCommercialBank(CommercialBank[] dataCommercialBank)
         {
@@ -32,6 +33,7 @@ namespace Es22._03.Banca
             }
         }*/
 
+        
 
         public bool flowMoney(Bank bankSender, Bank bankDestination)
         {
