@@ -29,7 +29,7 @@ namespace Proxy
             for (int i = 0; i < 10; i++)
             {
                 Console.WriteLine($"Chiamata all'IP {p.GetIP()}");
-                Thread.Sleep(500);
+                Thread.Sleep(200);
             }
             Console.WriteLine("---------------------------------------------------------\n");
         }
