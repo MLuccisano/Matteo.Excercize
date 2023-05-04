@@ -15,7 +15,7 @@ namespace EsercizioabsFactory.Factory
                 case "COVID": return new CovidFactory();
                 case "TICKET": return new ticketFactory();
                 default:
-                    Console.WriteLine("It's doesn't exist factory");
+                    Console.WriteLine($"{nameFactory} doesn't exist factory");
                     return null;
             }
         }
