@@ -31,7 +31,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contatore COVID EUROPEO", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventFinanciary", "EventFinanciary\EventFinanciary.csproj", "{2D4BE714-DC81-4271-93D6-6A9C3A8B8FBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Proxy", "Proxy\Proxy.csproj", "{EFF271E1-3FFD-4B2D-913B-87C6F82E831E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proxy", "Proxy\Proxy.csproj", "{EFF271E1-3FFD-4B2D-913B-87C6F82E831E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventFinanciaryDesignPattern", "EventFinanciaryDesignPattern\EventFinanciaryDesignPattern.csproj", "{DA191857-BDDF-4585-AB5C-8F74DAA325F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{EFF271E1-3FFD-4B2D-913B-87C6F82E831E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFF271E1-3FFD-4B2D-913B-87C6F82E831E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFF271E1-3FFD-4B2D-913B-87C6F82E831E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA191857-BDDF-4585-AB5C-8F74DAA325F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA191857-BDDF-4585-AB5C-8F74DAA325F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA191857-BDDF-4585-AB5C-8F74DAA325F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA191857-BDDF-4585-AB5C-8F74DAA325F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
