@@ -33,7 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventFinanciary", "EventFin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proxy", "Proxy\Proxy.csproj", "{EFF271E1-3FFD-4B2D-913B-87C6F82E831E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventFinanciaryDesignPattern", "EventFinanciaryDesignPattern\EventFinanciaryDesignPattern.csproj", "{DA191857-BDDF-4585-AB5C-8F74DAA325F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventFinanciaryDesignPattern", "EventFinanciaryDesignPattern\EventFinanciaryDesignPattern.csproj", "{DA191857-BDDF-4585-AB5C-8F74DAA325F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EsercizioabsFactory", "EsercizioabsFactory\EsercizioabsFactory.csproj", "{D9430580-1D6A-4EB9-8276-36C9E97A9876}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,10 @@ Global
 		{DA191857-BDDF-4585-AB5C-8F74DAA325F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA191857-BDDF-4585-AB5C-8F74DAA325F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA191857-BDDF-4585-AB5C-8F74DAA325F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9430580-1D6A-4EB9-8276-36C9E97A9876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9430580-1D6A-4EB9-8276-36C9E97A9876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9430580-1D6A-4EB9-8276-36C9E97A9876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9430580-1D6A-4EB9-8276-36C9E97A9876}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
