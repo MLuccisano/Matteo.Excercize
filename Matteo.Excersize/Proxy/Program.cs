@@ -11,22 +11,22 @@ namespace Proxy
             Proxy proxy1 = Proxy.Instance();
 
             Console.WriteLine("La lista degli ip disponibili del server proxy1:\n");
-            CallIP(proxy1);
+            CallIP(proxy1,10);
             
             Proxy proxy2 = Proxy.Instance();
             Console.WriteLine("Il server Proxy2 chiama la lista degli IP, la quale deve contenere gli ip uguali alla lista precedente\n");
 
-            CallIP(proxy2);
+            CallIP(proxy2,20);
             
 
         }
 
-        public static void CallIP (Proxy p)
+        public static void CallIP (Proxy p, int call)
         {
             p.GetListIp();
             Console.WriteLine("---------------------------------------------------------\n");
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < call; i++)
             {
                 Console.WriteLine($"Chiamata all'IP {p.GetIP()}");
                 Thread.Sleep(200);
