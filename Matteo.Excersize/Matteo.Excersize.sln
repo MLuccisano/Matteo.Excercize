@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventFinanciaryDesignPatter
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EsercizioabsFactory", "EsercizioabsFactory\EsercizioabsFactory.csproj", "{D9430580-1D6A-4EB9-8276-36C9E97A9876}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Youtube", "Youtube\Youtube.csproj", "{14DB849A-D16A-471D-9EFF-D80B7AB1273A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Youtube", "Youtube\Youtube.csproj", "{14DB849A-D16A-471D-9EFF-D80B7AB1273A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "asyncBreakfast", "asyncBreakfast\asyncBreakfast.csproj", "{60DA0296-DF1E-410B-B97E-AD19DBF5E08B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{14DB849A-D16A-471D-9EFF-D80B7AB1273A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14DB849A-D16A-471D-9EFF-D80B7AB1273A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14DB849A-D16A-471D-9EFF-D80B7AB1273A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60DA0296-DF1E-410B-B97E-AD19DBF5E08B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60DA0296-DF1E-410B-B97E-AD19DBF5E08B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60DA0296-DF1E-410B-B97E-AD19DBF5E08B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60DA0296-DF1E-410B-B97E-AD19DBF5E08B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

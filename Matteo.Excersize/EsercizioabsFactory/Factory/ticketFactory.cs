@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace EsercizioabsFactory.Factory
 {
-    public class ticketFactory : abstractFactory
+    public class ticketFactory
     {
-        public override IFactory GetChoice(string name)
+        /*public override IFactory GetChoice(string name)
         {
             switch (name.ToUpper())
             {
@@ -18,6 +18,6 @@ namespace EsercizioabsFactory.Factory
                 case "TRAIN": return new agencyTrain();
                 default: return null;
             }   
-        }
+        }*/
     }
 }

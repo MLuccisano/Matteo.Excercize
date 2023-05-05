@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EsercizioabsFactory.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace EsercizioabsFactory
 {
     public abstract class abstractFactory
     {
-        public abstract IFactory GetChoice(string nameAgency);
+        public abstract IFactory GetInfoSectionA();
+        
     }
 }

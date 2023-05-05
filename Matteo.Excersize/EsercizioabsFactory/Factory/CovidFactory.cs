@@ -9,14 +9,20 @@ namespace EsercizioabsFactory.Factory
 {
     public class CovidFactory : abstractFactory
     {
-        public override IFactory GetChoice(string name)
+        Europe _europe;
+        public CovidFactory(Europe europe)
         {
-            switch (name.ToUpper())
-            {
-                case "ZIF": return new ZoneInfoFactory();
-                case "TRAVEL DOCUMENT": return new TravelDocument();
-                default: return null;
-            }
+            _europe = europe;
         }
+        public override IFactory GetInfoSectionA()
+        {
+            ZoneInfoFactory zif = new ZoneInfoFactory(_europe);
+
+            return new TravelDocument (zif);
+        }
+
+
+
+
     }
 }

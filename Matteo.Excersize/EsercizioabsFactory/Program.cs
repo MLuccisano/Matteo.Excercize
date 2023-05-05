@@ -7,7 +7,13 @@ namespace EsercizioabsFactory
     {
         static void Main(string[] args)
         {
-            abstractFactory travelAgency1 = ClientChoiceFactory.GetFactory("covid");
+            Europe europe = new Europe("europe", 50000);
+            abstractFactory travelAgency = ClientChoiceFactory.GetFactory(europe);
+            IFactory Info = travelAgency.GetInfoSectionA();
+            Info.choice();
+
+
+            /*abstractFactory travelAgency1 = ClientChoiceFactory.GetFactory("covid");
             IFactory choice1 = travelAgency1.GetChoice("zif");
             choice1.choice();
 
@@ -15,7 +21,7 @@ namespace EsercizioabsFactory
             
             abstractFactory travelAgency2 = ClientChoiceFactory.GetFactory("ticket");
             IFactory choice2 = travelAgency2.GetChoice("bus");
-            choice2.choice();
+            choice2.choice();*/
         }
     }
 }

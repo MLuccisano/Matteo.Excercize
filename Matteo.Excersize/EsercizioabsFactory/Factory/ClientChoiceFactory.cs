@@ -8,16 +8,9 @@ namespace EsercizioabsFactory.Factory
 {
     public class ClientChoiceFactory
     {
-        public static abstractFactory GetFactory(string nameFactory)
+        public static abstractFactory GetFactory(Europe europe)
         {
-            switch (nameFactory.ToUpper())
-            {
-                case "COVID": return new CovidFactory();
-                case "TICKET": return new ticketFactory();
-                default:
-                    Console.WriteLine($"{nameFactory} doesn't exist factory");
-                    return null;
-            }
+            return new CovidFactory(europe);
         }
     }
 }
