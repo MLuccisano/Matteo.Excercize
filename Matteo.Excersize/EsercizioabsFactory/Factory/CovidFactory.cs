@@ -14,15 +14,10 @@ namespace EsercizioabsFactory.Factory
         {
             _europe = europe;
         }
-        public override IFactory GetInfoSectionA()
+        public override void GetInfoSectionA()
         {
             ZoneInfoFactory zif = new ZoneInfoFactory(_europe);
-
-            return new TravelDocument (zif);
+            TravelDocumentFactory tdf = new TravelDocumentFactory (zif);        
         }
-
-
-
-
     }
 }

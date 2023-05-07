@@ -10,7 +10,7 @@ namespace EsercizioabsFactory
 {
     public abstract class abstractFactory
     {
-        public abstract IFactory GetInfoSectionA();
+        public abstract void GetInfoSectionA();
         
     }
 }

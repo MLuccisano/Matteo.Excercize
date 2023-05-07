@@ -7,10 +7,10 @@ namespace EsercizioabsFactory
     {
         static void Main(string[] args)
         {
-            Europe europe = new Europe("europe", 50000);
+            Europe europe = new Europe("Europa", 3000);
             abstractFactory travelAgency = ClientChoiceFactory.GetFactory(europe);
-            IFactory Info = travelAgency.GetInfoSectionA();
-            Info.choice();
+            travelAgency.GetInfoSectionA();
+            
 
 
             /*abstractFactory travelAgency1 = ClientChoiceFactory.GetFactory("covid");

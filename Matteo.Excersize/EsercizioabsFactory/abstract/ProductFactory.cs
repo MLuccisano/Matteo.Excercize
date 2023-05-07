@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace EsercizioabsFactory
 {
-    public interface IFactory
+    abstract public class ProductFactory
     {
-        ProductFactory choice();
+
     }
 }

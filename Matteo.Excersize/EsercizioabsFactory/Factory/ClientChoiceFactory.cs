@@ -10,7 +10,8 @@ namespace EsercizioabsFactory.Factory
     {
         public static abstractFactory GetFactory(Europe europe)
         {
-            return new CovidFactory(europe);
+            CovidFactory covidFactory =  new CovidFactory(europe);
+            return new TicketFactory(covidFactory);           
         }
     }
 }

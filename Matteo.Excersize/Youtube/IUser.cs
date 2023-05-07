@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Youtube
 {
-    interface IUser
+   public interface IUser
     {
-        public void subscribe(Youtuber youtuber);
-        public void update(Youtuber youtuber);
+         public void Subscribe(User user);
+         public void Notify(User user);
     }
 }

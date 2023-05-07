@@ -6,22 +6,26 @@ using System.Threading.Tasks;
 
 namespace Youtube
 {
-    class User : person, IUser
+    public class User : person, IUser
     {
+        List<User> listFollower;
         public User(string fullname, string username) : base(fullname, username)
         {
-            
+            listFollower = new List<User>();    
+        }
+        public void Subscribe(User user)
+        {
+            Notify(user);
+            user.listFollower.Add(this);           
         }
 
-        public void subscribe(Youtuber youtuber)
+        public void Notify(User user)
         {
-            youtuber.Notify();
-            youtuber.ListFollower.Add(this);
-        }
-
-        public void update(Youtuber youtuber)
-        {
-            Console.WriteLine($"NOTIFICA PER {Username}: un nuovo membro si è iscrito al canale di {youtuber.Username}");
+            foreach (var follower in user.listFollower)
+            {
+                Console.WriteLine($"NOTIFICA PER {follower.Username.ToUpper()}: Si è iscritto {this.Username} al canale di {user.Username}\n ");                
+            }
+            Console.WriteLine("---------------------------------------------------------------------------------------------------------\n");
         }
 
     }

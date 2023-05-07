@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace EsercizioabsFactory
 {
-    public interface IFactory
+    abstract class Agency
     {
-        ProductFactory choice();
+        string _name;
+        public Agency(string name)
+        {
+            _name = name;
+        }
     }
 }

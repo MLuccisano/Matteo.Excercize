@@ -7,17 +7,21 @@ using System.Threading.Tasks;
 
 namespace EsercizioabsFactory.Factory
 {
-    public class ticketFactory
+    public class TicketFactory : abstractFactory
     {
-        /*public override IFactory GetChoice(string name)
+        CovidFactory _covidFactory;
+
+        public TicketFactory(CovidFactory covidFactory)
         {
-            switch (name.ToUpper())
-            {
-                case "AIRPLANE": return new agencyAirplane();
-                case "BUS": return new agencyBus();
-                case "TRAIN": return new agencyTrain();
-                default: return null;
-            }   
-        }*/
+            _covidFactory = covidFactory;
+        }
+
+        public override void GetInfoSectionA()
+        {
+            _covidFactory.GetInfoSectionA();
+            
+            
+        }
+
     }
 }

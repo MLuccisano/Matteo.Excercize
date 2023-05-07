@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Youtube
 {
-    abstract class person
+    abstract public class person
     {
         string _fullname;
         string _username;
-        public string Fullname { get => _fullname; set => _fullname = value; }
-        public string Username { get => _username; set => _username = value; }
+        public string Fullname { get => _fullname; }
+        public string Username { get => _username; }
 
         public person(string fullname, string username)
         {
