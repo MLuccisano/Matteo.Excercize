@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EsercizioabsFactory.Factory
+namespace MiddleWare
 {
-    class BusAgency
+    public abstract class AbstractFactory
     {
+        public abstract IService GetChoiceServices();
     }
 }

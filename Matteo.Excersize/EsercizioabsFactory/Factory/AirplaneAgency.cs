@@ -14,7 +14,7 @@ namespace EsercizioabsFactory.Factory
         public AirplaneAgency(string name) : base(name)
         {
             listAgency = new List<Ticket>();
-            listAgency.Add ()
+            
         }
 
         
