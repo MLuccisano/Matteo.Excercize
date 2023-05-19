@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace BackEndDelivery.Language
+namespace Middleware
 {
-    public interface ILanguageFactory
+    public interface IFactory
     {
-        ILanguage GetLanguage(int input);
+
     }
 }

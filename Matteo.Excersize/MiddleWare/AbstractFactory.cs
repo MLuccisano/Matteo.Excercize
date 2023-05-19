@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MiddleWare
+namespace Middleware
 {
-    public abstract class AbstractFactory
+    internal abstract class AbstractFactory
     {
-        public abstract IService GetChoiceServices();
+        public abstract IFactory getFactory(ref char input);
     }
 }

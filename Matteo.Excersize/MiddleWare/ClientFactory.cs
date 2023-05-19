@@ -1,23 +1,25 @@
-﻿using BackEndDelivery;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace MiddleWare
-{
-    public class ClientFactory
-    {
-        public static IService GetServices(ref char input)
-        {
-            if (input == 'Q') return null;
-            var inputNum = CharUnicodeInfo.GetDecimalDigitValue(input);
+using BackEndDelivery;
 
-            switch (inputNum)
+namespace Middleware
+{
+    class ClientFactory : AbstractFactory
+    {
+        TranslationStore ts;
+        public override IFactory getFactory(ref char input)
+        {
+            switch (input)
             {
-                case 1: return new FactoryLanguage();  
+                case 'T':
+
+                    if (ts == null) ts = new TranslationStore("Google Traduttore", "Mountain View");
+                    return (IFactory)ts;
             }
+            return null;
         }
     }
 }

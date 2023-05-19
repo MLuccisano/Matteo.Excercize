@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MiddleWare
+namespace Middleware
 {
     class Program
     {

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Middleware\Middleware.csproj" />
+    <ProjectReference Include="..\BackEndFood\BackEndDelivery.csproj" />
   </ItemGroup>
 
 </Project>
